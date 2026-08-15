@@ -14,6 +14,26 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
+Route::get('/services', function () {
+    return Inertia::render('Services');
+})->name('services');
+
+Route::get('/why-us', function () {
+    return Inertia::render('WhyUs');
+})->name('why-us');
+
+Route::get('/tech-stack', function () {
+    return Inertia::render('TechStack');
+})->name('tech-stack');
+
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+})->name('contact');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
