@@ -23,13 +23,13 @@ export default function Welcome() {
                     <span style={{width: "6px", height: "6px", background: "#0ea5e9", borderRadius: "50%", animation: "pulse 2s infinite"}}></span>
                     Technology Solutions Company in Chennai
                   </div>
-                  <h1 style={{fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: "800", lineHeight: "1.1", letterSpacing: "-.03em", marginBottom: "24px", animation: "fadeInUp .8s .15s ease-out both"}}>
+                  <h1 style={{fontSize: "clamp(2rem,4.5vw,3.5rem)", fontWeight: "800", lineHeight: "1.1", letterSpacing: "-.03em", marginBottom: "20px", animation: "fadeInUp .8s .15s ease-out both"}}>
                     Build. Automate. Grow. <br /><span className="gradient-text">With VMAKITEC.</span>
                   </h1>
-                  <h2 style={{fontSize: "clamp(1.1rem, 2vw, 1.5rem)", fontWeight: "600", color: "#e2e8f0", marginBottom: "20px", animation: "fadeInUp .8s .25s ease-out both"}}>
+                  <h2 style={{fontSize: "clamp(1rem, 1.5vw, 1.25rem)", fontWeight: "600", color: "#e2e8f0", marginBottom: "16px", animation: "fadeInUp .8s .25s ease-out both"}}>
                     Digital Solutions for Businesses in Chennai & Across India
                   </h2>
-                  <p style={{fontSize: "clamp(1rem,1.4vw,1.1rem)", color: "#94a3b8", lineHeight: "1.8", maxWidth: "600px", marginBottom: "36px", animation: "fadeInUp .8s .35s ease-out both"}} className="mx-auto lg:mx-0">
+                  <p style={{fontSize: "clamp(0.9rem,1.2vw,1rem)", color: "#94a3b8", lineHeight: "1.7", maxWidth: "600px", marginBottom: "32px", animation: "fadeInUp .8s .35s ease-out both"}} className="mx-auto lg:mx-0">
                     VMAKITEC is a technology solutions company in Chennai helping startups, small businesses, enterprises, and organizations build modern digital products and improve their business operations through technology. <br/><br/>
                     We build professional websites, mobile applications, AI-powered solutions, data-driven systems, and custom digital solutions designed around your business needs.
                   </p>
@@ -52,16 +52,16 @@ export default function Welcome() {
                       src="https://z-cdn-media.chatglm.cn/files/9c9058b9-7a81-4c39-8d4a-8991490d66ce.jpeg?auth_key=1882230010-987bae5e063043e898f1fd363647e89f-0-100ba04fca00dedcefb1362ed76c93e7"
                       alt="VMAKITEC Logo"
                       className="hero-logo-img"
-                      width="380"
-                      height="380"
+                      width="320"
+                      height="320"
                       fetchpriority="high"
                       loading="eager"
                       decoding="sync"
                      />
                     {/*  Fallback if image fails  */}
-                    <div style={{display: "none", width: "380px", height: "380px", borderRadius: "50%", background: "linear-gradient(135deg,rgba(14,165,233,.1),rgba(99,102,241,.1))", border: "2px solid rgba(14,165,233,.2)", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "8px", position: "relative", zIndex: "2"}} className="hero-logo-img">
-                      <div style={{width: "100px", height: "100px", background: "linear-gradient(135deg,#0ea5e9,#6366f1)", borderRadius: "24px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", fontSize: "2.5rem", color: "#fff"}}>V</div>
-                      <span style={{fontWeight: "700", fontSize: "1.1rem", color: "#f1f5f9", letterSpacing: ".05em"}}>VMAKITEC</span>
+                    <div style={{display: "none", width: "320px", height: "320px", borderRadius: "50%", background: "linear-gradient(135deg,rgba(14,165,233,.1),rgba(99,102,241,.1))", border: "2px solid rgba(14,165,233,.2)", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "8px", position: "relative", zIndex: "2"}} className="hero-logo-img">
+                      <div style={{width: "80px", height: "80px", background: "linear-gradient(135deg,#0ea5e9,#6366f1)", borderRadius: "20px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "900", fontSize: "2rem", color: "#fff"}}>V</div>
+                      <span style={{fontWeight: "700", fontSize: "1rem", color: "#f1f5f9", letterSpacing: ".05em"}}>VMAKITEC</span>
                     </div>
                   </div>
                 </div>
