@@ -78,17 +78,6 @@ require __DIR__ . '/../vendor/autoload.php';
 $app = require __DIR__ . '/../bootstrap/app.php';
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Schema;
-
-try {
-    if (!Schema::hasTable('users')) {
-        Artisan::call('migrate', ['--force' => true]);
-        Artisan::call('db:seed', ['--force' => true]);
-    }
-} catch (\Throwable $e) {
-    // Suppress error if database is already migrated
-}
 
 $app->handleRequest(Request::capture());
 

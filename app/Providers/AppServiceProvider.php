@@ -24,6 +24,17 @@ class AppServiceProvider extends ServiceProvider
             \Illuminate\Support\Facades\URL::forceScheme('https');
         }
 
+        if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || getenv('VERCEL')) {
+            try {
+                if (!\Illuminate\Support\Facades\Schema::hasTable('users')) {
+                    \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+                    \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+                }
+            } catch (\Throwable $e) {
+                // Silently catch migration errors if database is locked or already migrated
+            }
+        }
+
         Vite::prefetch(concurrency: 3);
     }
 }
