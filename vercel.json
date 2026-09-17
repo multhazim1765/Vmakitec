@@ -33,6 +33,12 @@
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
+        "APP_URL": "https://vmakitec.vercel.app",
+        "ASSET_URL": "https://vmakitec.vercel.app",
+        "APP_KEY": "base64:D56GheIkB5XEUwOa/tIghlgHQpcHb2dUmXszpGooAvI=",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "cookie",
+        "CACHE_STORE": "array",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",

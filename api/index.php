@@ -43,9 +43,14 @@ putenv('APP_MAINTENANCE_DRIVER=cache');
 putenv('APP_MAINTENANCE_STORE=array');
 putenv('DB_CONNECTION=sqlite');
 putenv('DB_DATABASE=' . $tmpSqlite);
+putenv('APP_URL=https://vmakitec.vercel.app');
 
+$_SERVER['HTTPS'] = 'on';
+$_SERVER['SERVER_PORT'] = '443';
+$_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
 $_SERVER['VERCEL'] = '1';
 $_ENV['VERCEL'] = '1';
+$_ENV['APP_URL'] = 'https://vmakitec.vercel.app';
 $_ENV['APP_STORAGE'] = $tmpStorage;
 $_ENV['VIEW_COMPILED_PATH'] = $tmpStorage . '/framework/views';
 $_ENV['LOG_CHANNEL'] = 'stderr';

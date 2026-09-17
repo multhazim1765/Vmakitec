@@ -20,6 +20,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        if (isset($_ENV['VERCEL']) || isset($_SERVER['VERCEL']) || request()->header('x-forwarded-proto') === 'https' || app()->environment('production')) {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
+
         Vite::prefetch(concurrency: 3);
     }
 }
