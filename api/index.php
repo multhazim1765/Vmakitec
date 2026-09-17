@@ -18,6 +18,9 @@ foreach ($tmpDirs as $dir) {
     }
 }
 
+// Remove dev hot file if present so production built assets in public/build are served
+@unlink(__DIR__ . '/../public/hot');
+
 // Ensure SQLite database file exists in /tmp if used
 $tmpSqlite = '/tmp/database.sqlite';
 if (!file_exists($tmpSqlite)) {
