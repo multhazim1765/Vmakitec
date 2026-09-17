@@ -23,8 +23,8 @@ foreach ($tmpDirs as $dir) {
 
 // Ensure SQLite database file exists in /tmp if used
 $tmpSqlite = '/tmp/database.sqlite';
-if (!file_exists($tmpSqlite)) {
-    $sourceSqlite = __DIR__ . '/../database/database.sqlite';
+$sourceSqlite = __DIR__ . '/../database/database.sqlite';
+if (!file_exists($tmpSqlite) || filesize($tmpSqlite) === 0) {
     if (file_exists($sourceSqlite) && filesize($sourceSqlite) > 0) {
         @copy($sourceSqlite, $tmpSqlite);
     } else {
