@@ -9,7 +9,7 @@ $tmpDirs = [
     $tmpStorage . '/framework/views',
     $tmpStorage . '/framework/sessions',
     $tmpStorage . '/framework/cache/data',
-    $tmpStorage . '/bootstrap/cache',
+    '/tmp/bootstrap/cache',
 ];
 
 foreach ($tmpDirs as $dir) {
@@ -67,6 +67,8 @@ $_ENV['APP_MAINTENANCE_STORE'] = 'array';
 $_ENV['DB_CONNECTION'] = 'sqlite';
 $_ENV['DB_DATABASE'] = $tmpSqlite;
 
+putenv('APP_DEBUG=true');
+$_ENV['APP_DEBUG'] = 'true';
 if (empty($_ENV['APP_KEY'])) {
     putenv('APP_KEY=base64:D56GheIkB5XEUwOa/tIghlgHQpcHb2dUmXszpGooAvI=');
     $_ENV['APP_KEY'] = 'base64:D56GheIkB5XEUwOa/tIghlgHQpcHb2dUmXszpGooAvI=';
