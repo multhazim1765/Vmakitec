@@ -29,13 +29,15 @@ if (!file_exists($tmpSqlite)) {
     }
 }
 
-// Set VERCEL flag and environment variables before bootstrapping
+// Set VERCEL environment variables before bootstrapping
 putenv('VERCEL=1');
 putenv('APP_STORAGE=' . $tmpStorage);
 putenv('VIEW_COMPILED_PATH=' . $tmpStorage . '/framework/views');
 putenv('LOG_CHANNEL=stderr');
 putenv('SESSION_DRIVER=cookie');
 putenv('CACHE_STORE=array');
+putenv('APP_MAINTENANCE_DRIVER=array');
+putenv('APP_MAINTENANCE_STORE=array');
 putenv('DB_CONNECTION=sqlite');
 putenv('DB_DATABASE=' . $tmpSqlite);
 
@@ -46,6 +48,8 @@ $_ENV['VIEW_COMPILED_PATH'] = $tmpStorage . '/framework/views';
 $_ENV['LOG_CHANNEL'] = 'stderr';
 $_ENV['SESSION_DRIVER'] = 'cookie';
 $_ENV['CACHE_STORE'] = 'array';
+$_ENV['APP_MAINTENANCE_DRIVER'] = 'array';
+$_ENV['APP_MAINTENANCE_STORE'] = 'array';
 $_ENV['DB_CONNECTION'] = 'sqlite';
 $_ENV['DB_DATABASE'] = $tmpSqlite;
 
