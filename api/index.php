@@ -49,6 +49,7 @@ putenv('APP_MAINTENANCE_STORE=array');
 putenv('DB_CONNECTION=sqlite');
 putenv('DB_DATABASE=' . $tmpSqlite);
 putenv('APP_URL=' . $appUrl);
+putenv('HASH_DRIVER=argon2id');
 
 $_SERVER['HTTPS'] = 'on';
 $_SERVER['SERVER_PORT'] = '443';
@@ -66,6 +67,7 @@ $_ENV['APP_MAINTENANCE_DRIVER'] = 'cache';
 $_ENV['APP_MAINTENANCE_STORE'] = 'array';
 $_ENV['DB_CONNECTION'] = 'sqlite';
 $_ENV['DB_DATABASE'] = $tmpSqlite;
+$_ENV['HASH_DRIVER'] = 'argon2id';
 
 putenv('APP_DEBUG=true');
 $_ENV['APP_DEBUG'] = 'true';
