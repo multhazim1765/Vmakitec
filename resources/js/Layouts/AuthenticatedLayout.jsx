@@ -7,19 +7,18 @@ import { useState } from 'react';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;
-
-    const [showingNavigationDropdown, setShowingNavigationDropdown] =
-        useState(false);
+    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <nav className="border-b border-gray-100 bg-white">
+        <div className="min-h-screen bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30">
+            <nav className="border-b border-slate-800 bg-slate-950 sticky top-0 z-50">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
+                                <Link href="/" className="flex items-center gap-2">
+                                    <div className="w-8 h-8 rounded bg-blue-500 flex items-center justify-center text-white font-bold">V</div>
+                                    <span className="font-bold text-white tracking-widest text-lg">VMAKITEC</span>
                                 </Link>
                             </div>
 
@@ -27,8 +26,37 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
+                                    className={route().current('dashboard') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
                                 >
                                     Dashboard
+                                </NavLink>
+                                <NavLink
+                                    href={route('admin.projects.index')}
+                                    active={route().current('admin.projects.*')}
+                                    className={route().current('admin.projects.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                >
+                                    Projects
+                                </NavLink>
+                                <NavLink
+                                    href={route('admin.services.index')}
+                                    active={route().current('admin.services.*')}
+                                    className={route().current('admin.services.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                >
+                                    Services
+                                </NavLink>
+                                <NavLink
+                                    href={route('admin.leads.index')}
+                                    active={route().current('admin.leads.*')}
+                                    className={route().current('admin.leads.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                >
+                                    Leads
+                                </NavLink>
+                                <NavLink
+                                    href={route('admin.testimonials.index')}
+                                    active={route().current('admin.testimonials.*')}
+                                    className={route().current('admin.testimonials.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                >
+                                    Testimonials
                                 </NavLink>
                             </div>
                         </div>
@@ -40,7 +68,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex items-center rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-medium leading-4 text-slate-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                             >
                                                 {user.name}
 
@@ -60,9 +88,10 @@ export default function AuthenticatedLayout({ header, children }) {
                                         </span>
                                     </Dropdown.Trigger>
 
-                                    <Dropdown.Content>
+                                    <Dropdown.Content contentClasses="py-1 bg-slate-800 border border-slate-700 shadow-xl">
                                         <Dropdown.Link
                                             href={route('profile.edit')}
+                                            className="text-slate-300 hover:bg-slate-700 hover:text-white focus:bg-slate-700"
                                         >
                                             Profile
                                         </Dropdown.Link>
@@ -70,6 +99,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                             href={route('logout')}
                                             method="post"
                                             as="button"
+                                            className="text-slate-300 hover:bg-slate-700 hover:text-white focus:bg-slate-700"
                                         >
                                             Log Out
                                         </Dropdown.Link>
@@ -80,40 +110,17 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         <div className="-me-2 flex items-center sm:hidden">
                             <button
-                                onClick={() =>
-                                    setShowingNavigationDropdown(
-                                        (previousState) => !previousState,
-                                    )
-                                }
-                                className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 transition duration-150 ease-in-out hover:bg-gray-100 hover:text-gray-500 focus:bg-gray-100 focus:text-gray-500 focus:outline-none"
+                                onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
+                                className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 transition duration-150 ease-in-out hover:bg-slate-800 hover:text-white focus:bg-slate-800 focus:text-white focus:outline-none"
                             >
-                                <svg
-                                    className="h-6 w-6"
-                                    stroke="currentColor"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
+                                <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path
-                                        className={
-                                            !showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
-                                        }
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M4 6h16M4 12h16M4 18h16"
+                                        className={!showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"
                                     />
                                     <path
-                                        className={
-                                            showingNavigationDropdown
-                                                ? 'inline-flex'
-                                                : 'hidden'
-                                        }
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M6 18L18 6M6 6l12 12"
+                                        className={showingNavigationDropdown ? 'inline-flex' : 'hidden'}
+                                        strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"
                                     />
                                 </svg>
                             </button>
@@ -121,56 +128,56 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 </div>
 
-                <div
-                    className={
-                        (showingNavigationDropdown ? 'block' : 'hidden') +
-                        ' sm:hidden'
-                    }
-                >
+                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden bg-slate-900 border-b border-slate-800'}>
                     <div className="space-y-1 pb-3 pt-2">
-                        <ResponsiveNavLink
-                            href={route('dashboard')}
-                            active={route().current('dashboard')}
+                        <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}
+                            className={route().current('dashboard') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
                         >
                             Dashboard
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('admin.projects.index')} active={route().current('admin.projects.*')}
+                            className={route().current('admin.projects.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                        >
+                            Projects
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('admin.services.index')} active={route().current('admin.services.*')}
+                            className={route().current('admin.services.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                        >
+                            Services
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('admin.leads.index')} active={route().current('admin.leads.*')}
+                            className={route().current('admin.leads.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                        >
+                            Leads
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('admin.testimonials.index')} active={route().current('admin.testimonials.*')}
+                            className={route().current('admin.testimonials.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                        >
+                            Testimonials
+                        </ResponsiveNavLink>
                     </div>
-
-                    <div className="border-t border-gray-200 pb-1 pt-4">
+                    <div className="border-t border-slate-800 pb-1 pt-4">
                         <div className="px-4">
-                            <div className="text-base font-medium text-gray-800">
-                                {user.name}
-                            </div>
-                            <div className="text-sm font-medium text-gray-500">
-                                {user.email}
-                            </div>
+                            <div className="text-base font-medium text-white">{user.name}</div>
+                            <div className="text-sm font-medium text-slate-400">{user.email}</div>
                         </div>
-
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')}>
-                                Profile
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="post"
-                                href={route('logout')}
-                                as="button"
-                            >
-                                Log Out
-                            </ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('profile.edit')} className="text-slate-400 hover:bg-slate-800 hover:text-white">Profile</ResponsiveNavLink>
+                            <ResponsiveNavLink method="post" href={route('logout')} as="button" className="text-slate-400 hover:bg-slate-800 hover:text-white">Log Out</ResponsiveNavLink>
                         </div>
                     </div>
                 </div>
             </nav>
 
             {header && (
-                <header className="bg-white shadow">
+                <header className="bg-slate-900 border-b border-slate-800/50 shadow-sm">
                     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>
             )}
 
-            <main>{children}</main>
+            <main className="py-8">{children}</main>
         </div>
     );
 }

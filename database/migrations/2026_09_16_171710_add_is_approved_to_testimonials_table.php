@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('services', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('icon_svg')->nullable();
-            $table->json('features')->nullable();
-            $table->string('starting_price')->nullable();
-            $table->timestamps();
+        Schema::table('testimonials', function (Blueprint $table) {
+            $table->boolean('is_approved')->default(false)->after('rating');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('services');
+        Schema::table('testimonials', function (Blueprint $table) {
+            $table->dropColumn('is_approved');
+        });
     }
 };

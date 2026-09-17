@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 
 export default function WhyUs() {
+    const { projects, testimonials } = usePage().props;
     const [openFaq, setOpenFaq] = useState(null);
 
     const toggleFaq = (index) => {
@@ -179,120 +180,67 @@ export default function WhyUs() {
                     </div>
 
                     <div className="space-y-12 reveal stagger-children">
-                        
-                        {/* Project Card 1 */}
-                        <div className="glass rounded-2xl overflow-hidden border border-white/5 flex flex-col lg:flex-row hover:border-blue-500/30 transition-colors">
-                            <div className="lg:w-2/5 p-8 border-b lg:border-b-0 lg:border-r border-white/5 bg-white/5 flex flex-col justify-center items-center relative min-h-[300px]">
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10"></div>
-                                {/* Placeholder Image Area */}
-                                <div className="w-full h-full border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center relative z-10 bg-black/40 backdrop-blur-sm min-h-[250px]">
-                                    <span className="text-slate-500 font-semibold tracking-widest text-sm">[PROJECT SCREENSHOT]</span>
+                        {projects && projects.length > 0 ? (
+                            projects.map((project, index) => (
+                                <div key={project.id} className={`glass rounded-2xl overflow-hidden border border-white/5 flex flex-col lg:flex-row hover:border-blue-500/30 transition-colors`}>
+                                    <div className={`lg:w-2/5 p-8 border-b lg:border-b-0 lg:border-r border-white/5 bg-white/5 flex flex-col justify-center items-center relative min-h-[300px] ${index % 2 !== 0 ? 'lg:order-2 lg:border-l lg:border-r-0' : ''}`}>
+                                        <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10`}></div>
+                                        {project.image_path ? (
+                                            <div className="w-full h-full rounded-xl flex items-center justify-center relative z-10 overflow-hidden">
+                                                <img src={`/storage/${project.image_path}`} alt={project.client_name} className="w-full h-full object-cover" />
+                                            </div>
+                                        ) : (
+                                            <div className="w-full h-full border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center relative z-10 bg-black/40 backdrop-blur-sm min-h-[250px]">
+                                                <span className="text-slate-500 font-semibold tracking-widest text-sm">[NO IMAGE]</span>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className={`lg:w-3/5 p-8 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1 lg:border-r border-white/5' : ''}`}>
+                                        <div className="flex justify-between items-start mb-4">
+                                            <h3 className="text-2xl font-bold text-white">{project.client_name}</h3>
+                                            <span className="px-3 py-1 bg-white/10 rounded-full text-xs text-slate-300 font-medium tracking-wide">{project.industry || 'General'}</span>
+                                        </div>
+                                        {project.challenge && (
+                                            <div className="mb-4">
+                                                <h4 className="text-blue-400 text-sm font-bold uppercase tracking-wider mb-1">Challenge</h4>
+                                                <p className="text-slate-400 text-sm whitespace-pre-line">{project.challenge}</p>
+                                            </div>
+                                        )}
+                                        {project.solution && (
+                                            <div className="mb-4">
+                                                <h4 className="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-1">Our Solution</h4>
+                                                <p className="text-slate-400 text-sm whitespace-pre-line">{project.solution}</p>
+                                            </div>
+                                        )}
+                                        {project.outcome && (
+                                            <div className="mb-4">
+                                                <h4 className="text-amber-400 text-sm font-bold uppercase tracking-wider mb-1">Outcome</h4>
+                                                <p className="text-slate-400 text-sm whitespace-pre-line">{project.outcome}</p>
+                                            </div>
+                                        )}
+                                        {project.tech_stack && project.tech_stack.length > 0 && (
+                                            <div className="flex flex-wrap gap-2 mt-2 mb-6">
+                                                {project.tech_stack.map((tech, i) => (
+                                                    <span key={i} className="text-xs font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded text-slate-300">{tech}</span>
+                                                ))}
+                                            </div>
+                                        )}
+                                        {project.link && (
+                                            <div>
+                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-white font-bold text-sm hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                                                    View Project <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                                                </a>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="text-center text-slate-400 py-12 border border-white/10 rounded-xl">
+                                More projects coming soon.
                             </div>
-                            <div className="lg:w-3/5 p-8 flex flex-col justify-center">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-2xl font-bold text-white">[CLIENT PROJECT NAME]</h3>
-                                    <span className="px-3 py-1 bg-white/10 rounded-full text-xs text-slate-300 font-medium tracking-wide">[Industry / Business Type]</span>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-blue-400 text-sm font-bold uppercase tracking-wider mb-1">Challenge</h4>
-                                    <p className="text-slate-400 text-sm">The client needed [briefly explain the business problem].</p>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-1">Our Solution</h4>
-                                    <p className="text-slate-400 text-sm">VMAKITEC designed and developed [website / web application / mobile application / custom software] to simplify the process and provide a better digital experience.</p>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-amber-400 text-sm font-bold uppercase tracking-wider mb-1">Outcome</h4>
-                                    <p className="text-slate-400 text-sm">[Add real result/impact here - e.g. Reduced manual work, Improved customer experience]</p>
-                                </div>
-                                <div className="flex flex-wrap gap-2 mt-2 mb-6">
-                                    <span className="text-xs font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded text-slate-300">[React.js]</span>
-                                    <span className="text-xs font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded text-slate-300">[Node.js]</span>
-                                    <span className="text-xs font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded text-slate-300">[MongoDB]</span>
-                                </div>
-                                <div>
-                                    <button className="text-white font-bold text-sm hover:text-blue-400 transition-colors flex items-center gap-2 group">
-                                        View Project <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Project Card 2 */}
-                        <div className="glass rounded-2xl overflow-hidden border border-white/5 flex flex-col lg:flex-row hover:border-indigo-500/30 transition-colors">
-                            <div className="lg:w-2/5 p-8 border-b lg:border-b-0 lg:border-r border-white/5 bg-white/5 flex flex-col justify-center items-center relative min-h-[300px] lg:order-2">
-                                <div className="absolute inset-0 bg-gradient-to-bl from-indigo-500/10 to-blue-500/10"></div>
-                                <div className="w-full h-full border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center relative z-10 bg-black/40 backdrop-blur-sm min-h-[250px]">
-                                    <span className="text-slate-500 font-semibold tracking-widest text-sm">[PROJECT SCREENSHOT]</span>
-                                </div>
-                            </div>
-                            <div className="lg:w-3/5 p-8 flex flex-col justify-center lg:order-1 lg:border-r border-white/5">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-2xl font-bold text-white">[CLIENT PROJECT NAME]</h3>
-                                    <span className="px-3 py-1 bg-white/10 rounded-full text-xs text-slate-300 font-medium tracking-wide">[Industry]</span>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-blue-400 text-sm font-bold uppercase tracking-wider mb-1">Challenge</h4>
-                                    <p className="text-slate-400 text-sm">The client wanted to improve [specific business challenge].</p>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-1">Our Solution</h4>
-                                    <p className="text-slate-400 text-sm">We created a customized digital solution that helped the client [specific improvement].</p>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-amber-400 text-sm font-bold uppercase tracking-wider mb-1">Outcome</h4>
-                                    <p className="text-slate-400 text-sm">[Real measurable or qualitative result]</p>
-                                </div>
-                                <div className="flex flex-wrap gap-2 mt-2 mb-6">
-                                    <span className="text-xs font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded text-slate-300">[Technology Stack]</span>
-                                </div>
-                                <div>
-                                    <button className="text-white font-bold text-sm hover:text-indigo-400 transition-colors flex items-center gap-2 group">
-                                        View Project <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Project Card 3 */}
-                        <div className="glass rounded-2xl overflow-hidden border border-white/5 flex flex-col lg:flex-row hover:border-emerald-500/30 transition-colors">
-                            <div className="lg:w-2/5 p-8 border-b lg:border-b-0 lg:border-r border-white/5 bg-white/5 flex flex-col justify-center items-center relative min-h-[300px]">
-                                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-teal-500/10"></div>
-                                <div className="w-full h-full border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center relative z-10 bg-black/40 backdrop-blur-sm min-h-[250px]">
-                                    <span className="text-slate-500 font-semibold tracking-widest text-sm">[PROJECT SCREENSHOT]</span>
-                                </div>
-                            </div>
-                            <div className="lg:w-3/5 p-8 flex flex-col justify-center">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-2xl font-bold text-white">[CLIENT PROJECT NAME]</h3>
-                                    <span className="px-3 py-1 bg-white/10 rounded-full text-xs text-slate-300 font-medium tracking-wide">[Industry]</span>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-blue-400 text-sm font-bold uppercase tracking-wider mb-1">Challenge</h4>
-                                    <p className="text-slate-400 text-sm">The client required [business requirement].</p>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-emerald-400 text-sm font-bold uppercase tracking-wider mb-1">Our Solution</h4>
-                                    <p className="text-slate-400 text-sm">VMAKITEC developed [solution] with a focus on usability, scalability, and business efficiency.</p>
-                                </div>
-                                <div className="mb-4">
-                                    <h4 className="text-amber-400 text-sm font-bold uppercase tracking-wider mb-1">Outcome</h4>
-                                    <p className="text-slate-400 text-sm">[Real result]</p>
-                                </div>
-                                <div className="flex flex-wrap gap-2 mt-2 mb-6">
-                                    <span className="text-xs font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded text-slate-300">[Technology Stack]</span>
-                                </div>
-                                <div>
-                                    <button className="text-white font-bold text-sm hover:text-emerald-400 transition-colors flex items-center gap-2 group">
-                                        View Project <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+                        )}
+                    </div>            </div>
             </section>
 
             {/*  ===== PROJECT RESULTS =====  */}
@@ -343,79 +291,64 @@ export default function WhyUs() {
                 <div className="max-w-7xl mx-auto px-6 text-center">
                     <p className="reveal" style={{ fontSize: '.85rem', fontWeight: '600', color: '#0ea5e9', letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '12px' }}>CLIENT FEEDBACK</p>
                     <h2 className="reveal text-3xl md:text-4xl font-bold mb-6">What Our Clients Say</h2>
-                    <p className="reveal text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed mb-16">
+                    <p className="reveal text-slate-400 text-lg max-w-3xl mx-auto leading-relaxed mb-8">
                         Our best work is reflected in the experiences of the people and businesses we work with.
                     </p>
+                    
+                    <div className="reveal mb-16">
+                        <Link
+                            href={route('leave-feedback')}
+                            className="inline-flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white font-medium py-3 px-6 rounded-full border border-white/10 transition-colors shadow-lg"
+                        >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            Leave Feedback
+                        </Link>
+                    </div>
 
                     <div className="grid lg:grid-cols-3 gap-6 reveal stagger-children text-left">
-                        {/* Testimonial 1 */}
-                        <div className="glass p-8 rounded-2xl relative flex flex-col border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="absolute top-8 right-8 text-white/5">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                            </div>
-                            <div className="flex gap-1 mb-6 text-amber-400 relative z-10">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <p className="text-slate-300 italic mb-8 relative z-10 flex-1 leading-relaxed text-sm lg:text-base">
-                                "[Insert the client's genuine feedback here. Do not generate or fabricate testimonials. Placeholder text until real data is provided.]"
-                            </p>
-                            <div className="flex items-center gap-4 relative z-10 border-t border-white/5 pt-6 mt-auto">
-                                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 font-bold border border-white/10 shrink-0">
-                                    [ ]
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-bold text-sm">[Client Name]</h4>
-                                    <p className="text-slate-400 text-xs">[Role], [Company Name]</p>
-                                    <p className="text-blue-400 text-xs mt-1">[Project Name]</p>
-                                </div>
-                            </div>
-                        </div>
+                        {testimonials && testimonials.length > 0 ? (
+                            testimonials.map((testimonial, index) => {
+                                const borderColors = ['border-blue-500/30', 'border-indigo-500/30', 'border-emerald-500/30', 'border-amber-500/30'];
+                                const textColors = ['text-blue-400', 'text-indigo-400', 'text-emerald-400', 'text-amber-400'];
+                                const colorIndex = index % borderColors.length;
 
-                        {/* Testimonial 2 */}
-                        <div className="glass p-8 rounded-2xl relative flex flex-col border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="absolute top-8 right-8 text-white/5">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                                return (
+                                    <div key={testimonial.id} className={`glass p-8 rounded-2xl relative flex flex-col border border-white/5 hover:${borderColors[colorIndex]} transition-colors`}>
+                                        <div className="absolute top-8 right-8 text-white/5">
+                                            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                                        </div>
+                                        <div className="flex gap-1 mb-6 text-amber-400 relative z-10">
+                                            {Array.from({ length: 5 }).map((_, i) => (
+                                                <span key={i} className={i < testimonial.rating ? '' : 'opacity-30'}>★</span>
+                                            ))}
+                                        </div>
+                                        <p className="text-slate-300 italic mb-8 relative z-10 flex-1 leading-relaxed text-sm lg:text-base whitespace-pre-line">
+                                            "{testimonial.feedback}"
+                                        </p>
+                                        <div className="flex items-center gap-4 relative z-10 border-t border-white/5 pt-6 mt-auto">
+                                            <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 font-bold border border-white/10 shrink-0">
+                                                {testimonial.client_name.charAt(0).toUpperCase()}
+                                            </div>
+                                            <div>
+                                                <h4 className="text-white font-bold text-sm">{testimonial.client_name}</h4>
+                                                {(testimonial.role || testimonial.company_name) && (
+                                                    <p className="text-slate-400 text-xs">
+                                                        {testimonial.role}{testimonial.role && testimonial.company_name ? ', ' : ''}{testimonial.company_name}
+                                                    </p>
+                                                )}
+                                                {testimonial.project_name && (
+                                                    <p className={`${textColors[colorIndex]} text-xs mt-1`}>{testimonial.project_name}</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        ) : (
+                            <div className="col-span-full text-center text-slate-400 py-12 border border-white/10 rounded-xl">
+                                Testimonials coming soon.
                             </div>
-                            <div className="flex gap-1 mb-6 text-amber-400 relative z-10">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <p className="text-slate-300 italic mb-8 relative z-10 flex-1 leading-relaxed text-sm lg:text-base">
-                                "[Insert genuine client feedback here. Placeholder text until real data is provided.]"
-                            </p>
-                            <div className="flex items-center gap-4 relative z-10 border-t border-white/5 pt-6 mt-auto">
-                                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 font-bold border border-white/10 shrink-0">
-                                    [ ]
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-bold text-sm">[Client Name]</h4>
-                                    <p className="text-slate-400 text-xs">[Role], [Company Name]</p>
-                                    <p className="text-indigo-400 text-xs mt-1">[Project Name]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Testimonial 3 */}
-                        <div className="glass p-8 rounded-2xl relative flex flex-col border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="absolute top-8 right-8 text-white/5">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                            </div>
-                            <div className="flex gap-1 mb-6 text-amber-400 relative z-10">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <p className="text-slate-300 italic mb-8 relative z-10 flex-1 leading-relaxed text-sm lg:text-base">
-                                "[Insert genuine client feedback here. Placeholder text until real data is provided.]"
-                            </p>
-                            <div className="flex items-center gap-4 relative z-10 border-t border-white/5 pt-6 mt-auto">
-                                <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center text-slate-500 font-bold border border-white/10 shrink-0">
-                                    [ ]
-                                </div>
-                                <div>
-                                    <h4 className="text-white font-bold text-sm">[Client Name]</h4>
-                                    <p className="text-slate-400 text-xs">[Role], [Company Name]</p>
-                                    <p className="text-emerald-400 text-xs mt-1">[Project Name]</p>
-                                </div>
-                            </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </section>

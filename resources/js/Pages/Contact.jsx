@@ -1,8 +1,25 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, useForm, usePage } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 
 export default function Contact() {
+    const { props } = usePage();
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        email: '',
+        phone: '',
+        service: '',
+        budget: '',
+        description: '',
+    });
+
+    const submit = (e) => {
+        e.preventDefault();
+        post(route('contact.store'), {
+            preserveScroll: true,
+            onSuccess: () => reset(),
+        });
+    };
     return (
         <MainLayout>
             <Head title="Contact Us - VMAKITEC" />
@@ -33,17 +50,59 @@ export default function Contact() {
         </div>
       </div>
       <div className="lg:col-span-3 reveal-right">
-        <form id="quoteForm" className="glass" style={{padding: "32px"}} >
+        {props.flash && props.flash.success && (
+            <div className="mb-6 bg-emerald-900/50 border border-emerald-500 text-emerald-200 px-6 py-4 rounded-xl relative shadow-lg">
+                <div className="flex items-center gap-3">
+                    <span className="text-emerald-400 font-bold text-xl">✓</span>
+                    <p className="font-medium">{props.flash.success}</p>
+                </div>
+            </div>
+        )}
+        <form onSubmit={submit} className="glass" style={{padding: "32px"}} >
           <div className="grid sm:grid-cols-2 gap-5">
-            <div><label className="form-label">Full Name *</label><input type="text" name="name" className="form-input" placeholder="Your full name" required /><div className="error-msg">Please enter your name</div></div>
-            <div><label className="form-label">Email Address *</label><input type="email" name="email" className="form-input" placeholder="your@email.com" required /><div className="error-msg">Please enter a valid email</div></div>
-            <div><label className="form-label">Phone Number *</label><input type="tel" name="phone" className="form-input" placeholder="+91 XXXXXXXXXX" required /><div className="error-msg">Please enter your phone number</div></div>
-            <div><label className="form-label">Service Required *</label><select name="service" className="form-input" required><option value="">Select a service</option><option>Web Development</option><option>Mobile App Development</option><option>AI Solutions</option><option>Data Analytics</option><option>UI/UX Design</option><option>Digital Transformation</option><option>Other</option></select><div className="error-msg">Please select a service</div></div>
-            {/*  Changed from dropdown to manual text input for budget  */}
-            <div className="sm:col-span-2"><label className="form-label">Project Budget</label><input type="text" name="budget" className="form-input" placeholder="Enter your estimated budget (e.g., ₹50,000 - ₹1,00,000)" /></div>
-            <div className="sm:col-span-2"><label className="form-label">Project Description *</label><textarea name="description" className="form-input" placeholder="Tell us about your project, goals, and any specific requirements..." required></textarea><div className="error-msg">Please describe your project</div></div>
+            <div>
+                <label className="form-label text-slate-300 font-medium mb-2 block">Full Name *</label>
+                <input type="text" name="name" value={data.name} onChange={e => setData('name', e.target.value)} className="form-input w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors" placeholder="Your full name" required />
+                {errors.name && <div className="text-red-400 text-sm mt-1">{errors.name}</div>}
+            </div>
+            <div>
+                <label className="form-label text-slate-300 font-medium mb-2 block">Email Address *</label>
+                <input type="email" name="email" value={data.email} onChange={e => setData('email', e.target.value)} className="form-input w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors" placeholder="your@email.com" required />
+                {errors.email && <div className="text-red-400 text-sm mt-1">{errors.email}</div>}
+            </div>
+            <div>
+                <label className="form-label text-slate-300 font-medium mb-2 block">Phone Number *</label>
+                <input type="tel" name="phone" value={data.phone} onChange={e => setData('phone', e.target.value)} className="form-input w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors" placeholder="+91 XXXXXXXXXX" required />
+                {errors.phone && <div className="text-red-400 text-sm mt-1">{errors.phone}</div>}
+            </div>
+            <div>
+                <label className="form-label text-slate-300 font-medium mb-2 block">Service Required *</label>
+                <select name="service" value={data.service} onChange={e => setData('service', e.target.value)} className="form-input w-full bg-slate-900 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors" required>
+                    <option value="">Select a service</option>
+                    <option value="Web Development">Web Development</option>
+                    <option value="Mobile App Development">Mobile App Development</option>
+                    <option value="AI Solutions">AI Solutions</option>
+                    <option value="Data Analytics">Data Analytics</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Digital Transformation">Digital Transformation</option>
+                    <option value="Other">Other</option>
+                </select>
+                {errors.service && <div className="text-red-400 text-sm mt-1">{errors.service}</div>}
+            </div>
+            <div className="sm:col-span-2">
+                <label className="form-label text-slate-300 font-medium mb-2 block">Project Budget</label>
+                <input type="text" name="budget" value={data.budget} onChange={e => setData('budget', e.target.value)} className="form-input w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors" placeholder="Enter your estimated budget (e.g., ₹50,000 - ₹1,00,000)" />
+                {errors.budget && <div className="text-red-400 text-sm mt-1">{errors.budget}</div>}
+            </div>
+            <div className="sm:col-span-2">
+                <label className="form-label text-slate-300 font-medium mb-2 block">Project Description *</label>
+                <textarea name="description" value={data.description} onChange={e => setData('description', e.target.value)} rows="4" className="form-input w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white focus:border-blue-500 outline-none transition-colors" placeholder="Tell us about your project, goals, and any specific requirements..." required></textarea>
+                {errors.description && <div className="text-red-400 text-sm mt-1">{errors.description}</div>}
+            </div>
           </div>
-          <button type="submit" id="submitBtn" className="btn-primary" style={{marginTop: "24px", width: "100%", padding: "16px", fontSize: "1rem"}}><span id="submitText">Submit Request</span></button>
+          <button type="submit" disabled={processing} className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-4 px-6 rounded-xl transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 uppercase tracking-wider text-sm disabled:opacity-50">
+            {processing ? 'Submitting...' : 'Submit Request'}
+          </button>
         </form>
       </div>
     </div>
