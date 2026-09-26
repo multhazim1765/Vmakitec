@@ -132,11 +132,15 @@ textarea.form-input{resize:vertical;min-height:120px}
 /* Logo Hero Styles */
 .hero-logo-wrapper{position:relative;display:flex;align-items:center;justify-content:center}
 .hero-logo-glow{position:absolute;width:120%;height:120%;background:radial-gradient(circle,rgba(14,165,233,.15) 0%,rgba(99,102,241,.08) 40%,transparent 70%);border-radius:50%;animation:logoGlowPulse 4s ease-in-out infinite;pointer-events:none}
-.hero-logo-ring{position:absolute;width:110%;height:110%;border:1px solid rgba(14,165,233,.15);border-radius:50%;animation:spin 20s linear infinite;pointer-events:none}
+.hero-logo-ring{position:absolute;width:110%;height:110%;border:1px solid rgba(14,165,233,.15);border-radius:50%;animation:spin 20s linear infinite;pointer-events:none;z-index:3}
 .hero-logo-ring::after{content:'';position:absolute;top:-3px;left:50%;width:6px;height:6px;background:#0ea5e9;border-radius:50%;box-shadow:0 0 12px #0ea5e9}
-.hero-logo-ring2{position:absolute;width:125%;height:125%;border:1px dashed rgba(99,102,241,.1);border-radius:50%;animation:spin 35s linear infinite reverse;pointer-events:none}
-.hero-logo-img{width:340px;height:340px;object-fit:contain;position:relative;z-index:2;filter:drop-shadow(0 0 30px rgba(14,165,233,.2));animation:logoFloat 6s ease-in-out infinite}
+.hero-logo-ring2{position:absolute;width:125%;height:125%;border:1px dashed rgba(99,102,241,.1);border-radius:50%;animation:spin 35s linear infinite reverse;pointer-events:none;z-index:3}
+.hero-logo-img{width:340px;height:340px;object-fit:cover;border-radius:50%;position:relative;z-index:2;box-shadow:0 0 40px rgba(14,165,233,.3);border:2px solid rgba(14,165,233,.2);animation:logoFloat 6s ease-in-out infinite}
 @media(max-width:768px){.hero-logo-img{width:240px;height:240px}}
+
+.orbit-img{position:absolute;width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid #0ea5e9;box-shadow:0 0 15px rgba(14,165,233,0.5);animation:spin linear infinite;pointer-events:auto;z-index:10;transition:transform 0.3s}
+.orbit-img:hover{transform:scale(1.2)}
+.orbit-img.border-indigo{border-color:#6366f1;box-shadow:0 0 15px rgba(99,102,241,0.5)}
 
 /* Tech Card */
 .tech-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:24px;font-weight:800;transition:transform .3s}

@@ -21,16 +21,6 @@ foreach ($tmpDirs as $dir) {
 // Remove dev hot file if present so production built assets in public/build are served
 @unlink(__DIR__ . '/../public/hot');
 
-// Ensure SQLite database file exists in /tmp if used
-$tmpSqlite = '/tmp/database.sqlite';
-$sourceSqlite = __DIR__ . '/../database/database.sqlite';
-if (!file_exists($tmpSqlite) || filesize($tmpSqlite) === 0) {
-    if (file_exists($sourceSqlite) && filesize($sourceSqlite) > 0) {
-        @copy($sourceSqlite, $tmpSqlite);
-    } else {
-        @touch($tmpSqlite);
-    }
-}
 
 $protocol = (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') || (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
 $host = $_SERVER['HTTP_HOST'] ?? 'vmakitec.vercel.app';
@@ -46,10 +36,8 @@ putenv('SESSION_SECURE_COOKIE=true');
 putenv('CACHE_STORE=array');
 putenv('APP_MAINTENANCE_DRIVER=cache');
 putenv('APP_MAINTENANCE_STORE=array');
-putenv('DB_CONNECTION=sqlite');
-putenv('DB_DATABASE=' . $tmpSqlite);
 putenv('APP_URL=' . $appUrl);
-putenv('HASH_DRIVER=argon2id');
+putenv('HASH_DRIVER=bcrypt');
 
 $_SERVER['HTTPS'] = 'on';
 $_SERVER['SERVER_PORT'] = '443';
@@ -65,12 +53,8 @@ $_ENV['SESSION_SECURE_COOKIE'] = 'true';
 $_ENV['CACHE_STORE'] = 'array';
 $_ENV['APP_MAINTENANCE_DRIVER'] = 'cache';
 $_ENV['APP_MAINTENANCE_STORE'] = 'array';
-$_ENV['DB_CONNECTION'] = 'sqlite';
-$_ENV['DB_DATABASE'] = $tmpSqlite;
-$_ENV['HASH_DRIVER'] = 'argon2id';
+$_ENV['HASH_DRIVER'] = 'bcrypt';
 
-putenv('APP_DEBUG=true');
-$_ENV['APP_DEBUG'] = 'true';
 if (empty($_ENV['APP_KEY'])) {
     putenv('APP_KEY=base64:D56GheIkB5XEUwOa/tIghlgHQpcHb2dUmXszpGooAvI=');
     $_ENV['APP_KEY'] = 'base64:D56GheIkB5XEUwOa/tIghlgHQpcHb2dUmXszpGooAvI=';

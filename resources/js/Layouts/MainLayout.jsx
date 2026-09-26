@@ -88,7 +88,7 @@ export default function MainLayout({ children }) {
             <nav className="nav-glass fixed top-0 left-0 right-0 z-50" id="navbar">
               <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16">
                 <Link href="/" className="flex items-center gap-2" style={{textDecoration: "none"}}>
-                  <div style={{width: "36px", height: "36px", background: "linear-gradient(135deg,#0ea5e9,#6366f1)", borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "800", fontSize: ".85rem", color: "#fff"}}>V</div>
+                  <img src="/vmakitec-logo.jpg" alt="VMAKITEC" style={{width: "36px", height: "36px", borderRadius: "50%", objectFit: "cover", boxShadow: "0 0 10px rgba(14,165,233,0.3)"}} />
                   <span style={{fontWeight: "700", fontSize: "1.15rem", color: "#f1f5f9", letterSpacing: "-.02em"}}>VMAKITEC</span>
                 </Link>
                 <div className="desktop-nav flex items-center gap-8" style={{display: "flex"}}>
