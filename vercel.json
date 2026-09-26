@@ -28,7 +28,7 @@
     ],
     "env": {
         "APP_ENV": "production",
-        "APP_DEBUG": "false",
+        "APP_DEBUG": "true",
         "APP_URL": "https://vmakitec.vercel.app",
         "ASSET_URL": "https://vmakitec.vercel.app",
         "LOG_CHANNEL": "stderr",
