@@ -21,6 +21,7 @@ $app = Application::configure(basePath: dirname(__DIR__))
             'register',
             'forgot-password',
             'reset-password',
+            'contact',
         ]);
 
         $middleware->web(append: [
