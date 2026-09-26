@@ -7,7 +7,7 @@ export const teamData = [
     location: "Chennai, India",
     email: "ahamedmulthazim90@gmail.com",
     phone: "+91 9600244885",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/vmakitec-services-and-tech-solutions-1b0309419/",
     github: "https://github.com/multhazim1765",
     summary: "As the visionary Founder of VMAKITEC, my greatest motivation is building something extraordinary from the ground up alongside my closest friends and trusted teammates. We started this company with a shared dream: to transform our collective technical expertise into real-world solutions that truly make a difference. My role is to steer our vision, foster our collaborative spirit, and ensure that every product we build is driven by innovation, passion, and a genuine desire to solve our clients' toughest challenges.",
     skills: {
@@ -63,7 +63,7 @@ export const teamData = [
     location: "Chennai, India",
     email: "irfankhanjaffer@gmail.com",
     phone: "+91 7092768612",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/vmakitec-services-and-tech-solutions-1b0309419/",
     github: "https://github.com",
     summary: "I am driven by the shared vision of building our company from the ground up. As the Tech Lead, I bring our ambitious ideas to life across both mobile apps and web platforms. Whether I am architecting robust end-to-end data pipelines or engineering seamless user experiences, I am deeply committed to ensuring our foundational strategies propel our collective mission forward.",
     skills: {
@@ -113,7 +113,7 @@ export const teamData = [
     location: "Chennai, India",
     email: "aaseemabu@gmail.com",
     phone: "+91 9043335392",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/vmakitec-services-and-tech-solutions-1b0309419/",
     github: "https://github.com",
     summary: "I am a versatile professional driving both the technical and business success at VMAKITEC. As an AI & Full-Stack Developer, I architect intelligent, scalable systems. Simultaneously, as the Finance & Marketing Manager, I oversee budget optimization, drive strategic marketing campaigns, and ensure our financial health. My unique ability to bridge cutting-edge data science with astute business and financial strategy allows me to deliver holistic solutions you can trust.",
     skills: {
@@ -165,7 +165,7 @@ export const teamData = [
     location: "Chennai, India",
     email: "farook140506@gmail.com",
     phone: "+91 78458 25785",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/vmakitec-services-and-tech-solutions-1b0309419/",
     github: "https://github.com",
     summary: "I'm a Tech Developer with a deep passion for building high-quality websites and applications. Working closely with my talented team, I've successfully guided multiple projects from initial ideas to live products. My experience is backed by active participation in various hackathons, rigorous internships, and hands-on project work. My goal is simple: to leverage my team's expertise and my own deep knowledge in the field to deliver robust, reliable solutions that you and your business can fully trust.",
     skills: {
