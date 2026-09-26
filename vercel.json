@@ -18,12 +18,8 @@
             "dest": "/public/$1/$2"
         },
         {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "/public/robots.txt"
+            "src": "/(.*\\.(jpg|jpeg|png|gif|svg|ico|webp|txt))$",
+            "dest": "/public/$1"
         },
         {
             "src": "/(.*)",
