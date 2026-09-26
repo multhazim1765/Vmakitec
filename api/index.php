@@ -38,6 +38,7 @@ putenv('APP_MAINTENANCE_DRIVER=cache');
 putenv('APP_MAINTENANCE_STORE=array');
 putenv('APP_URL=' . $appUrl);
 putenv('HASH_DRIVER=bcrypt');
+putenv('DB_CONNECTION=mysql');
 
 $_SERVER['HTTPS'] = 'on';
 $_SERVER['SERVER_PORT'] = '443';
@@ -54,6 +55,7 @@ $_ENV['CACHE_STORE'] = 'array';
 $_ENV['APP_MAINTENANCE_DRIVER'] = 'cache';
 $_ENV['APP_MAINTENANCE_STORE'] = 'array';
 $_ENV['HASH_DRIVER'] = 'bcrypt';
+$_ENV['DB_CONNECTION'] = 'mysql';
 
 if (empty($_ENV['APP_KEY'])) {
     putenv('APP_KEY=base64:D56GheIkB5XEUwOa/tIghlgHQpcHb2dUmXszpGooAvI=');
