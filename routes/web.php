@@ -95,3 +95,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/fix-hash', function() { $user = \App\Models\User::where('email', 'vmakitec@gmail.com')->first(); if($user) { $user->password = \Illuminate\Support\Facades\Hash::make('am9790@@'); $user->save(); return 'Hash fixed for Vercel!'; } return 'User not found'; });
 Route::get('/debug-session', function() { return response()->json([ 'config' => config('session'), 'time' => \Carbon\Carbon::now()->toDateTimeString(), 'app_name' => config('app.name') ]); });
+Route::get('/fix-db', function () {
+    \Illuminate\Support\Facades\DB::statement('ALTER TABLE projects MODIFY image_path LONGTEXT');
+    return 'Database fixed! You can now upload images in the Admin Panel without them breaking.';
+});
