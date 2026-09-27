@@ -17,7 +17,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/" className="flex items-center gap-2">
-                                    <div className="w-8 h-8 rounded bg-blue-500 flex items-center justify-center text-white font-bold">V</div>
+                                    <img src="/vmakitec-logo.jpg" alt="VMAKITEC Logo" className="w-8 h-8 rounded object-cover" />
                                     <span className="font-bold text-white tracking-widest text-lg">VMAKITEC</span>
                                 </Link>
                             </div>

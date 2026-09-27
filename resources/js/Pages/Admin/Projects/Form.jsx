@@ -1,11 +1,13 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { useState, useEffect } from 'react';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 
 export default function Form({ project }) {
     const isEditing = !!project;
+    const [imagePreview, setImagePreview] = useState(null);
 
     const { data, setData, post, put, processing, errors, transform } = useForm({
         client_name: project?.client_name || '',
@@ -152,11 +154,25 @@ export default function Form({ project }) {
                                     id="image"
                                     type="file"
                                     className="mt-1 block w-full text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-900 file:text-blue-200 hover:file:bg-blue-800"
-                                    onChange={(e) => setData('image', e.target.files[0])}
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        setData('image', file);
+                                        if (file) {
+                                            setImagePreview(URL.createObjectURL(file));
+                                        } else {
+                                            setImagePreview(null);
+                                        }
+                                    }}
                                     accept="image/*"
                                 />
                                 <InputError className="mt-2" message={errors.image} />
-                                {isEditing && project.image_path && (
+                                {imagePreview && (
+                                    <div className="mt-2">
+                                        <p className="text-sm text-slate-400 mb-2">Selected Image Preview:</p>
+                                        <img src={imagePreview} alt="Preview" className="h-32 object-contain rounded border border-slate-700" />
+                                    </div>
+                                )}
+                                {!imagePreview && isEditing && project.image_path && (
                                     <div className="mt-2">
                                         <p className="text-sm text-slate-400 mb-2">Current Image:</p>
                                         <img src={project.image_path} alt="Current" className="h-32 object-contain rounded border border-slate-700" />

@@ -25,8 +25,17 @@ Route::get('/services', function () {
 })->name('services');
 
 Route::get('/why-us', function () {
+    $projects = \App\Models\Project::all()->map(function($project) {
+        if ($project->image_path && str_starts_with($project->image_path, 'data:')) {
+            $project->image_path = '/images/projects/' . $project->id;
+        } elseif ($project->image_path && !str_starts_with($project->image_path, 'http')) {
+            $project->image_path = '/storage/' . $project->image_path;
+        }
+        return $project;
+    });
+
     return Inertia::render('WhyUs', [
-        'projects' => \App\Models\Project::all(),
+        'projects' => $projects,
         'testimonials' => \App\Models\Testimonial::where('is_approved', true)->latest()->take(6)->get()
     ]);
 })->name('why-us');
@@ -90,6 +99,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/leave-feedback', [\App\Http\Controllers\TestimonialController::class, 'create'])->name('leave-feedback');
 Route::post('/leave-feedback', [\App\Http\Controllers\TestimonialController::class, 'store'])->name('leave-feedback.store');
+Route::get('/images/projects/{id}', [\App\Http\Controllers\Admin\ProjectController::class, 'showImage'])->name('project.image');
 
 require __DIR__.'/auth.php';
 
