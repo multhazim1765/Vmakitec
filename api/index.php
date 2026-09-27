@@ -37,6 +37,7 @@ putenv('CACHE_STORE=array');
 putenv('APP_MAINTENANCE_DRIVER=cache');
 putenv('APP_MAINTENANCE_STORE=array');
 putenv('APP_URL=' . $appUrl);
+putenv('HASH_DRIVER=argon2id');
 putenv('DB_CONNECTION=mysql');
 
 $_SERVER['HTTPS'] = 'on';
