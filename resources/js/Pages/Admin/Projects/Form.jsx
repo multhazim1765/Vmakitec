@@ -7,7 +7,7 @@ import TextInput from '@/Components/TextInput';
 export default function Form({ project }) {
     const isEditing = !!project;
 
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, put, processing, errors, transform } = useForm({
         client_name: project?.client_name || '',
         industry: project?.industry || '',
         challenge: project?.challenge || '',
@@ -21,23 +21,18 @@ export default function Form({ project }) {
     const submit = (e) => {
         e.preventDefault();
 
-        // Convert tech_stack string to array before submission if needed, or handle in backend.
-        // The backend validation expects an array, so let's format it here.
-        const payload = {
+        transform((data) => ({
             ...data,
             tech_stack: data.tech_stack ? data.tech_stack.split(',').map(s => s.trim()) : null,
-        };
+            _method: isEditing ? 'put' : undefined,
+        }));
 
         if (isEditing) {
-            // Inertia doesn't support PUT with FormData (files), so we fake it with _method
-            payload._method = 'put';
             post(route('admin.projects.update', project.id), {
-                data: payload,
                 forceFormData: true,
             });
         } else {
             post(route('admin.projects.store'), {
-                data: payload,
                 forceFormData: true,
             });
         }
