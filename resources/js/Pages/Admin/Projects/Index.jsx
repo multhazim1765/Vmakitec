@@ -80,3 +80,4 @@ export default function Index({ projects, success }) {
         </AuthenticatedLayout>
     );
 }
+

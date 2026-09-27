@@ -187,7 +187,7 @@ export default function WhyUs() {
                                         <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10`}></div>
                                         {project.image_path ? (
                                             <div className="w-full h-full rounded-xl flex items-center justify-center relative z-10 overflow-hidden">
-                                                <img src={`/storage/${project.image_path}`} alt={project.client_name} className="w-full h-full object-cover" />
+                                                <img src={project.image_path.startsWith('data:') || project.image_path.startsWith('http') ? project.image_path : `/storage/${project.image_path}`} alt={project.client_name} className="w-full h-full object-cover" />
                                             </div>
                                         ) : (
                                             <div className="w-full h-full border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center relative z-10 bg-black/40 backdrop-blur-sm min-h-[250px]">
@@ -496,3 +496,4 @@ export default function WhyUs() {
         </MainLayout>
     );
 }
+

@@ -36,7 +36,10 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image_path'] = $request->file('image')->store('projects', 'public');
+            $file = $request->file('image');
+            $mime = $file->getClientMimeType();
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
+            $validated['image_path'] = 'data:' . $mime . ';base64,' . $base64;
         }
 
         Project::create($validated);
@@ -65,10 +68,10 @@ class ProjectController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            if ($project->image_path) {
-                Storage::disk('public')->delete($project->image_path);
-            }
-            $validated['image_path'] = $request->file('image')->store('projects', 'public');
+            $file = $request->file('image');
+            $mime = $file->getClientMimeType();
+            $base64 = base64_encode(file_get_contents($file->getRealPath()));
+            $validated['image_path'] = 'data:' . $mime . ';base64,' . $base64;
         }
 
         $project->update($validated);
@@ -86,3 +89,4 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }
 }
+
