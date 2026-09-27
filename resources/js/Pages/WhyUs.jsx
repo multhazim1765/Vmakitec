@@ -187,7 +187,25 @@ export default function WhyUs() {
                                         <div className={`absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10`}></div>
                                         {project.image_path ? (
                                             <div className="w-full h-full rounded-xl flex items-center justify-center relative z-10 overflow-hidden">
-                                                <img src={project.image_path} alt={project.client_name} className="w-full h-full object-cover" />
+                                                <img 
+      src={project.image_path} 
+      alt={project.client_name} 
+      className="w-full h-full object-cover"
+      onError={(e) => {
+        // Fallback for broken/missing images
+        e.currentTarget.style.display = 'none';
+        if (e.currentTarget.nextElementSibling) {
+          e.currentTarget.nextElementSibling.style.display = 'flex';
+        }
+      }} 
+    />
+    <div className="hidden w-full h-full bg-gradient-to-br from-blue-900/60 to-purple-900/60 border border-white/10 rounded-xl flex flex-col items-center justify-center p-6 text-center">
+      <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-3">
+        <span className="text-blue-400 font-bold text-lg">{project.client_name ? project.client_name.charAt(0).toUpperCase() : 'V'}</span>
+      </div>
+      <span className="text-white font-bold text-base">{project.client_name}</span>
+      <span className="text-slate-400 text-xs mt-1">{project.industry || 'Featured Project'}</span>
+    </div>
                                             </div>
                                         ) : (
                                             <div className="w-full h-full border-2 border-dashed border-white/20 rounded-xl flex items-center justify-center relative z-10 bg-black/40 backdrop-blur-sm min-h-[250px]">

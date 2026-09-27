@@ -13,11 +13,13 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::latest()->get()->map(function($project) {
-            if ($project->image_path && str_starts_with($project->image_path, 'data:')) {
+            if ($project->image_path) {
+            if (str_starts_with($project->image_path, 'data:')) {
                 $project->image_path = '/images/projects/' . $project->id;
-            } elseif ($project->image_path && !str_starts_with($project->image_path, 'http')) {
+            } elseif (!str_starts_with($project->image_path, 'http') && !str_starts_with($project->image_path, '/')) {
                 $project->image_path = '/storage/' . $project->image_path;
             }
+        }
             return $project;
         });
 
@@ -58,10 +60,12 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        if ($project->image_path && str_starts_with($project->image_path, 'data:')) {
-            $project->image_path = '/images/projects/' . $project->id;
-        } elseif ($project->image_path && !str_starts_with($project->image_path, 'http')) {
-            $project->image_path = '/storage/' . $project->image_path;
+        if ($project->image_path) {
+            if (str_starts_with($project->image_path, 'data:')) {
+                $project->image_path = '/images/projects/' . $project->id;
+            } elseif (!str_starts_with($project->image_path, 'http') && !str_starts_with($project->image_path, '/')) {
+                $project->image_path = '/storage/' . $project->image_path;
+            }
         }
 
         return Inertia::render('Admin/Projects/Form', [
