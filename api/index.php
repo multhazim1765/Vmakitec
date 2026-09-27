@@ -53,7 +53,6 @@ $_ENV['SESSION_SECURE_COOKIE'] = 'true';
 $_ENV['CACHE_STORE'] = 'array';
 $_ENV['APP_MAINTENANCE_DRIVER'] = 'cache';
 $_ENV['APP_MAINTENANCE_STORE'] = 'array';
-$_ENV['HASH_DRIVER'] = 'argon2id';
 $_ENV['DB_CONNECTION'] = 'mysql';
 
 if (empty($_ENV['APP_KEY'])) {
