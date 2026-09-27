@@ -159,7 +159,7 @@ export default function Form({ project }) {
                                 {isEditing && project.image_path && (
                                     <div className="mt-2">
                                         <p className="text-sm text-slate-400 mb-2">Current Image:</p>
-                                        <img src={project.image_path.startsWith('data:') || project.image_path.startsWith('http') ? project.image_path : `/storage/${project.image_path}`} alt="Current" className="h-32 object-contain rounded border border-slate-700" />
+                                        <img src={project.image_path} alt="Current" className="h-32 object-contain rounded border border-slate-700" />
                                     </div>
                                 )}
                             </div>
@@ -180,4 +180,6 @@ export default function Form({ project }) {
         </AuthenticatedLayout>
     );
 }
+
+
 

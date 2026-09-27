@@ -12,8 +12,17 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        $projects = Project::latest()->get()->map(function($project) {
+            if ($project->image_path && str_starts_with($project->image_path, 'data:')) {
+                $project->image_path = '/images/projects/' . $project->id;
+            } elseif ($project->image_path && !str_starts_with($project->image_path, 'http')) {
+                $project->image_path = '/storage/' . $project->image_path;
+            }
+            return $project;
+        });
+
         return Inertia::render('Admin/Projects/Index', [
-            'projects' => Project::latest()->get()
+            'projects' => $projects
         ]);
     }
 
@@ -49,9 +58,31 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
+        if ($project->image_path && str_starts_with($project->image_path, 'data:')) {
+            $project->image_path = '/images/projects/' . $project->id;
+        } elseif ($project->image_path && !str_starts_with($project->image_path, 'http')) {
+            $project->image_path = '/storage/' . $project->image_path;
+        }
+
         return Inertia::render('Admin/Projects/Form', [
             'project' => $project
         ]);
+    }
+
+    public function showImage($id)
+    {
+        $project = Project::find($id);
+        if (!$project || !$project->image_path) abort(404);
+        
+        if (str_starts_with($project->image_path, 'data:')) {
+            list($type, $data) = explode(';', $project->image_path);
+            list(, $data)      = explode(',', $data);
+            $mime = str_replace('data:', '', $type);
+            $data = base64_decode($data);
+            return response($data)->header('Content-Type', $mime)->header('Cache-Control', 'public, max-age=31536000');
+        }
+        
+        abort(404);
     }
 
     public function update(Request $request, Project $project)
@@ -89,4 +120,5 @@ class ProjectController extends Controller
         return redirect()->route('admin.projects.index')->with('success', 'Project deleted successfully.');
     }
 }
+
 

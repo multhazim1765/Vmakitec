@@ -99,3 +99,4 @@ Route::get('/fix-db', function () {
     \Illuminate\Support\Facades\DB::statement('ALTER TABLE projects MODIFY image_path LONGTEXT');
     return 'Database fixed! You can now upload images in the Admin Panel without them breaking.';
 });
+
