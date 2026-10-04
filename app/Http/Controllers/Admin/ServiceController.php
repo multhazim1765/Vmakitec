@@ -26,9 +26,13 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'icon_svg' => 'nullable|string',
-            'features' => 'nullable|array',
+            'features' => 'nullable',
             'starting_price' => 'nullable|string|max:255',
         ]);
+
+        if (is_string($validated['features'] ?? null)) {
+            $validated['features'] = array_values(array_filter(array_map('trim', explode("\n", $validated['features']))));
+        }
 
         Service::create($validated);
 
@@ -47,9 +51,13 @@ class ServiceController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'icon_svg' => 'nullable|string',
-            'features' => 'nullable|array',
+            'features' => 'nullable',
             'starting_price' => 'nullable|string|max:255',
         ]);
+
+        if (is_string($validated['features'] ?? null)) {
+            $validated['features'] = array_values(array_filter(array_map('trim', explode("\n", $validated['features']))));
+        }
 
         $service->update($validated);
 

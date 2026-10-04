@@ -206,5 +206,86 @@ for (const m of migrations) {
     migStmt.run(m);
 }
 
+
+console.log('Inserting default services...');
+
+const servicesData = [
+    {
+        title: 'Web Development',
+        icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>',
+        features: JSON.stringify([
+            'Responsive & Modern UI/UX',
+            'Full-Stack Web Applications (React, Next.js, Laravel)',
+            'SEO & Speed Optimization',
+            'Custom CMS & API Integration'
+        ]),
+        starting_price: '₹13,999'
+    },
+    {
+        title: 'Mobile App Development',
+        icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><line x1="12" x2="12.01" y1="18" y2="18"/></svg>',
+        features: JSON.stringify([
+            'Cross-Platform iOS & Android Apps',
+            'Custom Native Mobile Features & APIs',
+            'Smooth & High-Performance UI',
+            'App Store & Google Play Store Deployment'
+        ]),
+        starting_price: '₹14,999'
+    },
+    {
+        title: 'AI Solutions',
+        icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10H12V2z"/><path d="M12 12L2.1 12"/><path d="M12 12l4.3-7.5"/></svg>',
+        features: JSON.stringify([
+            'Custom AI Chatbots & Intelligent Assistants',
+            'LLM & OpenAI API Integration',
+            'Workflow & Business Automation',
+            'Machine Learning Models & Data Analytics'
+        ]),
+        starting_price: '₹14,999'
+    },
+    {
+        title: 'Data Analytics',
+        icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg>',
+        features: JSON.stringify([
+            'Interactive BI Dashboards & Visualizations',
+            'Data Cleaning, ETL & Processing',
+            'Automated Business Reports',
+            'KPI Tracking & Predictive Analytics'
+        ]),
+        starting_price: '₹12,999'
+    },
+    {
+        title: 'UI/UX Design',
+        icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.74 1.7-1.67 0-.44-.19-.84-.46-1.14-.27-.32-.44-.73-.44-1.19 0-.93.75-1.7 1.7-1.7h2.5c2.76 0 5-2.24 5-5 0-4.97-4.48-9-10-9z"/></svg>',
+        features: JSON.stringify([
+            'High-Fidelity Wireframes & Prototypes',
+            'User Experience & Journey Optimization',
+            'Mobile-First Design Systems',
+            'Interactive Component Libraries'
+        ]),
+        starting_price: '₹12,999'
+    },
+    {
+        title: 'Digital Transformation',
+        icon_svg: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>',
+        features: JSON.stringify([
+            'Business Process Automation',
+            'Cloud Infrastructure & Migration Guidance',
+            'Legacy System Modernization',
+            'Custom Enterprise Workflow Management'
+        ]),
+        starting_price: '₹14,999'
+    }
+];
+
+const serviceStmt = db.prepare(`
+INSERT INTO services (title, icon_svg, features, starting_price, created_at, updated_at)
+VALUES (?, ?, ?, ?, ?, ?)
+`);
+
+for (const s of servicesData) {
+    serviceStmt.run(s.title, s.icon_svg, s.features, s.starting_price, now, now);
+}
+
 db.close();
 console.log('SUCCESS! Database database/database.sqlite created and populated!');

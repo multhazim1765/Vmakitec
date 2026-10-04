@@ -17,16 +17,10 @@ export default function Form({ service }) {
     const submit = (e) => {
         e.preventDefault();
 
-        // Convert features string (newline separated) to array
-        const payload = {
-            ...data,
-            features: data.features ? data.features.split('\n').map(s => s.trim()).filter(s => s) : null,
-        };
-
         if (isEditing) {
-            put(route('admin.services.update', service.id), { data: payload });
+            put(route('admin.services.update', service.id));
         } else {
-            post(route('admin.services.store'), { data: payload });
+            post(route('admin.services.store'));
         }
     };
 
