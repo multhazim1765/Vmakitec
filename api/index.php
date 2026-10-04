@@ -43,10 +43,16 @@ if (!empty($dbHost) && $dbHost !== '127.0.0.1' && $dbHost !== 'localhost') {
     $dbConnection = 'sqlite';
 }
 
+$bundledDb = __DIR__ . '/../database/database.sqlite';
 $sqliteDbPath = '/tmp/database.sqlite';
+
 if ($dbConnection === 'sqlite') {
-    if (!file_exists($sqliteDbPath)) {
-        @touch($sqliteDbPath);
+    if (!file_exists($sqliteDbPath) || filesize($sqliteDbPath) < 1000) {
+        if (file_exists($bundledDb) && filesize($bundledDb) > 1000) {
+            @copy($bundledDb, $sqliteDbPath);
+        } else {
+            @touch($sqliteDbPath);
+        }
     }
 }
 
@@ -107,9 +113,14 @@ $app = require __DIR__ . '/../bootstrap/app.php';
 // Handle SQLite auto-migration fallback if SQLite is active
 if ($dbConnection === 'sqlite') {
     try {
-        if (!\Illuminate\Support\Facades\Schema::hasTable('projects')) {
-            \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
-            \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+        if (!\Illuminate\Support\Facades\Schema::hasTable('users')) {
+            if (file_exists($bundledDb) && filesize($bundledDb) > 1000) {
+                @copy($bundledDb, $sqliteDbPath);
+            }
+            if (!\Illuminate\Support\Facades\Schema::hasTable('users')) {
+                \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+                \Illuminate\Support\Facades\Artisan::call('db:seed', ['--force' => true]);
+            }
         }
     } catch (\Throwable $e) {
         // Silently continue if tables exist

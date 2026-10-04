@@ -3,7 +3,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "build": "vite build && node -e \"import('node:fs').then(fs => fs.cpSync('public', 'dist', { recursive: true }))\"",
+        "build": "node scratch/build_sqlite.cjs && vite build && node -e \"import('node:fs').then(fs => fs.cpSync('public', 'dist', { recursive: true }))\"",
         "dev": "vite"
     },
     "devDependencies": {
