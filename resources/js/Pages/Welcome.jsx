@@ -48,24 +48,24 @@ export default function Welcome() {
               <div className="hero-logo-glow"></div>
               <div className="hero-logo-ring" style={{ zIndex: 20 }}></div>
               <div className="hero-logo-ring2" style={{ zIndex: 20 }}>
-                {/* Top Center */}
+                {/* Top Center (0°) - Multhazim */}
                 <div style={{ position: 'absolute', top: '-28px', left: 'calc(50% - 28px)', animation: 'popupIn 0.6s 1.0s both' }}>
                   <img src="/multhazim.jpeg" alt="Multhazim" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Ahamed Multhazim A" />
                 </div>
-                {/* Top Right */}
-                <div style={{ position: 'absolute', top: '18%', right: '-15px', animation: 'popupIn 0.6s 1.2s both' }}>
+                {/* Top Right (72°) - Irfan */}
+                <div style={{ position: 'absolute', top: 'calc(34.55% - 28px)', left: 'calc(97.55% - 28px)', animation: 'popupIn 0.6s 1.2s both' }}>
                   <img src="/irfan.jpeg" alt="Irfan" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Irfan Khan" />
                 </div>
-                {/* Bottom Center */}
-                <div style={{ position: 'absolute', bottom: '-28px', left: 'calc(50% - 28px)', animation: 'popupIn 0.6s 1.4s both' }}>
+                {/* Bottom Right (144°) - Abu */}
+                <div style={{ position: 'absolute', top: 'calc(90.45% - 28px)', left: 'calc(79.4% - 28px)', animation: 'popupIn 0.6s 1.4s both' }}>
                   <img src="/abu.jpeg" alt="Abu" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Abu Aaseem K" />
                 </div>
-                {/* Bottom Left */}
-                <div style={{ position: 'absolute', bottom: '18%', left: '-15px', animation: 'popupIn 0.6s 1.6s both' }}>
+                {/* Bottom Left (216°) - Faazil */}
+                <div style={{ position: 'absolute', top: 'calc(90.45% - 28px)', left: 'calc(20.6% - 28px)', animation: 'popupIn 0.6s 1.6s both' }}>
                   <img src="/faazil.jpeg" alt="Faazil" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Mohamed Abdul Faazil A" />
                 </div>
-                {/* Top Left */}
-                <div style={{ position: 'absolute', top: '18%', left: '-15px', animation: 'popupIn 0.6s 1.8s both' }}>
+                {/* Top Left (288°) - Farook */}
+                <div style={{ position: 'absolute', top: 'calc(34.55% - 28px)', left: 'calc(2.45% - 28px)', animation: 'popupIn 0.6s 1.8s both' }}>
                   <img src="/profile.jpeg" alt="Farook" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Mohammed Farook M" />
                 </div>
               </div>
