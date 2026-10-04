@@ -177,7 +177,7 @@ CREATE TABLE migrations (
 console.log('Inserting admin user...');
 
 const now = new Date().toISOString();
-const passwordHash = '$2y$12$1pEBcYujjzsWi.w.fs0Nh.UsF/TvA7WSy9s.cxbYAVvB/bfNykWDC';
+const passwordHash = '$2y$12$001rfkbNg5uSxL0VUqrFCOnFc/jWnz0tBi7loyz9.yKegwLLPBfKq';
 
 const stmt = db.prepare(`
 INSERT INTO users (name, email, email_verified_at, password, created_at, updated_at)
