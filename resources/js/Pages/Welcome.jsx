@@ -52,16 +52,20 @@ export default function Welcome() {
                 <div style={{ position: 'absolute', top: '-28px', left: 'calc(50% - 28px)', animation: 'popupIn 0.6s 1.0s both' }}>
                   <img src="/multhazim.jpeg" alt="Multhazim" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Ahamed Multhazim A" />
                 </div>
-                {/* Right */}
-                <div style={{ position: 'absolute', top: 'calc(50% - 28px)', right: '-28px', animation: 'popupIn 0.6s 1.3s both' }}>
+                {/* Top Right */}
+                <div style={{ position: 'absolute', top: '22%', right: '-18px', animation: 'popupIn 0.6s 1.2s both' }}>
                   <img src="/irfan.jpeg" alt="Irfan" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Irfan Khan" />
                 </div>
-                {/* Bottom */}
-                <div style={{ position: 'absolute', bottom: '-28px', left: 'calc(50% - 28px)', animation: 'popupIn 0.6s 1.6s both' }}>
+                {/* Bottom Right */}
+                <div style={{ position: 'absolute', bottom: '12%', right: '-5px', animation: 'popupIn 0.6s 1.4s both' }}>
                   <img src="/abu.jpeg" alt="Abu" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Abu Aaseem K" />
                 </div>
-                {/* Left */}
-                <div style={{ position: 'absolute', top: 'calc(50% - 28px)', left: '-28px', animation: 'popupIn 0.6s 1.9s both' }}>
+                {/* Bottom Left */}
+                <div style={{ position: 'absolute', bottom: '12%', left: '-5px', animation: 'popupIn 0.6s 1.6s both' }}>
+                  <img src="/faazil.jpeg" alt="Faazil" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Mohamed Abdul Faazil A" />
+                </div>
+                {/* Top Left */}
+                <div style={{ position: 'absolute', top: '22%', left: '-18px', animation: 'popupIn 0.6s 1.8s both' }}>
                   <img src="/profile.jpeg" alt="Farook" className="orbit-img" style={{ position: 'relative', animationDuration: '35s', animationDirection: 'normal', zIndex: 30 }} title="Mohammed Farook M" />
                 </div>
               </div>
