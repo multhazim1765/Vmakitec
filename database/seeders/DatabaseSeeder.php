@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'ADMIN',
             'email' => 'vmakitec@gmail.com',
-            'password' => bcrypt('am9790@@'),
+            'password' => '$argon2id$v=19$m=65536,t=4,p=1$T2w4cDlUNmJuQkgyZ25lMg$AMozLBS6LeMii7hSdTCI4OVaClwTOC7fdBVX4+LqtJw',
         ]);
     }
 }

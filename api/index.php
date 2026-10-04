@@ -71,7 +71,7 @@ putenv('APP_NAME=Vmakitec');
 putenv('SESSION_COOKIE=vmakitec_session');
 putenv('SESSION_LIFETIME=120');
 putenv('SESSION_EXPIRE_ON_CLOSE=false');
-// putenv('HASH_DRIVER=argon2id');
+putenv('HASH_DRIVER=argon2id');
 putenv('DB_CONNECTION=' . $dbConnection);
 if ($dbConnection === 'sqlite') {
     putenv('DB_DATABASE=' . $sqliteDbPath);
