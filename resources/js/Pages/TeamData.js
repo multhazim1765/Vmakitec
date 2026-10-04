@@ -205,5 +205,56 @@ export const teamData = [
       },
     ],
     photo: "/profile.jpeg"
-  }
+  },
+  {
+    id: "faazil",
+    name: "Mohamed Abdul Faazil A",
+    role: "Full Stack Developer & AI Engineer",
+    title: "MERN Stack, AI & Cloud Specialist",
+    location: "Chennai, India",
+    email: "mohamedabdulfaazil@gmail.com",
+    phone: "+91 9445328586",
+    linkedin: "https://www.linkedin.com/in/vmakitec-services-and-tech-solutions-1b0309419/",
+    github: "https://github.com",
+    summary: "Final-year AI & Data Science undergraduate and Full-Stack Developer skilled in Python, Java, and JavaScript (MERN Stack). Experienced in building end-to-end full-stack web applications, integrating AI/ML models, and managing cloud/DevOps workflows combining strong Data Structures & Algorithms with practical cloud deployments.",
+    skills: {
+      "Languages": ["JavaScript (ES6+)", "Python", "Java", "C", "C++"],
+      "Frontend": ["React.js", "Angular", "HTML5", "CSS3", "Tailwind CSS"],
+      "Backend & APIs": ["Node.js", "Express.js", "RESTful APIs", "System Architecture"],
+      "Databases & Cloud": ["MongoDB", "PostgreSQL", "SQL", "AWS", "Azure", "Docker", "Terraform"],
+      "Core Concepts": ["Data Structures & Algorithms", "AI/ML Integration", "Cybersecurity Fundamentals"]
+    },
+    experience: [
+      {
+        role: "Full Stack & AI Engineer",
+        company: "VMAKITEC",
+        duration: "Present",
+        points: [
+          "Architecting and deploying scalable web application features by combining React.js frontends with backend API services.",
+          "Engineering predictive AI/ML threat detection and data analytics pipelines into application backends.",
+          "Managing cloud infrastructure and continuous deployment workflows with AWS, Azure, Docker, and Terraform.",
+        ],
+      },
+      {
+        role: "Cloud, DevOps & AI Full Stack Intern",
+        company: "Hi-Tech Solutions Softwares",
+        duration: "Jul 2025 - Aug 2025",
+        points: [
+          "Designed and deployed scalable web application features combining React.js frontends with backend API services.",
+          "Supported cloud infrastructure and continuous deployment workflows using AWS, Azure, Docker, and Terraform.",
+          "Integrated AI service endpoints into full-stack application architectures to enable automated data processing.",
+        ],
+      },
+      {
+        role: "Software Engineering Intern",
+        company: "AdroIT Technologies Innovative Solutions Pvt. Ltd.",
+        duration: "Recent",
+        points: [
+          "Contributed to the development and backend integration of an internal web-based Project Management Tool.",
+          "Collaborated on implementing user authentication, data persistence mechanisms, and interactive UI components.",
+        ],
+      }
+    ],
+    photo: "/faazil.jpeg"
+  },
 ];
