@@ -70,7 +70,7 @@ export default function Welcome({ services }) {
                 </div>
               </div>
               <img
-                src="/"
+                src="/vmakitec-logo.jpg"
                 alt="VMAKITEC Logo"
                 className="hero-logo-img"
                 width="380"
