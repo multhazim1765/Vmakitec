@@ -4,6 +4,11 @@ const { DatabaseSync } = require('node:sqlite');
 
 const dbPath = path.join(__dirname, '../database/database.sqlite');
 
+if (fs.existsSync(dbPath) && fs.statSync(dbPath).size > 1000) {
+    console.log('Database database.sqlite already exists with data. Preserving existing records!');
+    process.exit(0);
+}
+
 if (fs.existsSync(dbPath)) {
     fs.unlinkSync(dbPath);
 }

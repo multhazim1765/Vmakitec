@@ -2,7 +2,7 @@ import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import MainLayout from '@/Layouts/MainLayout';
 
-export default function Welcome() {
+export default function Welcome({ services }) {
   return (
     <MainLayout>
       <Head>
@@ -70,7 +70,7 @@ export default function Welcome() {
                 </div>
               </div>
               <img
-                src="/vmakitec-logo.jpg"
+                src="/"
                 alt="VMAKITEC Logo"
                 className="hero-logo-img"
                 width="380"
@@ -110,48 +110,45 @@ export default function Welcome() {
           <p className="reveal" style={{ fontSize: '.9rem', fontWeight: '600', color: '#0ea5e9', letterSpacing: '.15em', textTransform: 'uppercase', marginBottom: '12px' }}>What We Do</p>
           <h2 className="reveal" style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: '800', marginBottom: '48px' }}>Core <span className="gradient-text">Services</span></h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 reveal stagger-children text-left">
-            <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
-              <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(14,165,233,.1)", color: "#0ea5e9", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
-              <h3 className="text-xl font-bold text-white mb-3">Web Development</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">Professional websites and web applications designed for performance, responsiveness, and business growth.</p>
-              <Link href="/services" className="text-blue-400 font-bold text-sm hover:text-blue-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
-            </div>
-
-            <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
-              <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(99,102,241,.1)", color: "#6366f1", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><line x1="12" y1="18" x2="12.01" y2="18" /></svg></div>
-              <h3 className="text-xl font-bold text-white mb-3">Mobile App Development</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">Custom Android, iOS, and cross-platform applications built robustly around your specific business requirements.</p>
-              <Link href="/services" className="text-indigo-400 font-bold text-sm hover:text-indigo-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
-            </div>
-
-            <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
-              <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(16,185,129,.1)", color: "#10b981", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2 6.1 5 7.4V20h6v-2.6c3-1.3 5-4 5-7.4a8 8 0 0 0-8-8Z" /><path d="M9 22h6" /><path d="M8 18v4" /><path d="M16 18v4" /></svg></div>
-              <h3 className="text-xl font-bold text-white mb-3">AI Solutions</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">AI-powered applications, intelligent automation, machine learning integration, and smart business solutions.</p>
-              <Link href="/services" className="text-emerald-400 font-bold text-sm hover:text-emerald-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
-            </div>
-
-            <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
-              <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(245,158,11,.1)", color: "#f59e0b", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="20" x2="12" y2="10" /><line x1="18" y1="20" x2="18" y2="4" /><line x1="6" y1="20" x2="6" y2="16" /></svg></div>
-              <h3 className="text-xl font-bold text-white mb-3">Data Analytics</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">Transform complex business data into meaningful dashboards, actionable insights, and better decision-making capabilities.</p>
-              <Link href="/services" className="text-amber-400 font-bold text-sm hover:text-amber-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
-            </div>
-
-            <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
-              <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(236,72,153,.1)", color: "#ec4899", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
-              <h3 className="text-xl font-bold text-white mb-3">UI/UX Design</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">User-focused interfaces designed to create simple, engaging, intuitive, and highly effective digital experiences.</p>
-              <Link href="/services" className="text-pink-400 font-bold text-sm hover:text-pink-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
-            </div>
-
-            <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
-              <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(139,92,246,.1)", color: "#8b5cf6", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" /><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" /><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" /><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" /></svg></div>
-              <h3 className="text-xl font-bold text-white mb-3">Digital Transformation</h3>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">Modernize legacy business processes through workflow automation, custom software, and connected digital systems.</p>
-              <Link href="/services" className="text-purple-400 font-bold text-sm hover:text-purple-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
-            </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 reveal stagger-children text-left">
+            {services && services.length > 0 ? (
+              services.map((service, idx) => (
+                <div key={service.id || idx} className="glass tilt-card flex flex-col p-8 rounded-2xl">
+                  {service.icon_svg ? (
+                    <div
+                      style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(14,165,233,.1)", color: "#0ea5e9", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}
+                      dangerouslySetInnerHTML={{ __html: service.icon_svg }}
+                    />
+                  ) : (
+                    <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(14,165,233,.1)", color: "#0ea5e9", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg>
+                    </div>
+                  )}
+                  <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                    {Array.isArray(service.features) && service.features.length > 0 
+                      ? service.features.slice(0, 3).join(' â€¢ ') 
+                      : (service.description || 'Professional technology service customized for your business requirements.')}
+                  </p>
+                  <div className="pt-4 border-t border-white/5 flex items-center justify-between mt-auto">
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Starting from</span>
+                      <span className="font-bold text-white text-base">{service.starting_price || 'Custom'}</span>
+                    </div>
+                    <Link href="/services" className="text-blue-400 font-bold text-sm hover:text-blue-300 transition-colors flex items-center gap-1 group">
+                      Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
+                    </Link>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="glass tilt-card flex flex-col p-8 rounded-2xl">
+                <div style={{ width: "50px", height: "50px", borderRadius: "12px", background: "rgba(14,165,233,.1)", color: "#0ea5e9", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "24px" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" /></svg></div>
+                <h3 className="text-xl font-bold text-white mb-3">Web Development</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-6 flex-1">Professional websites and web applications designed for performance, responsiveness, and business growth.</p>
+                <Link href="/services" className="text-blue-400 font-bold text-sm hover:text-blue-300 transition-colors flex items-center gap-2 group">Learn More <span className="group-hover:translate-x-1 transition-transform">&rarr;</span></Link>
+              </div>
+            )}
           </div>
         </div>
       </section>
