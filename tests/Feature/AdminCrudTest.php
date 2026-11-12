@@ -188,6 +188,15 @@ class AdminCrudTest extends TestCase
         $this->assertDatabaseMissing('testimonials', ['id' => $t->id]);
     }
 
+    public function test_unsafe_maintenance_routes_are_gone(): void
+    {
+        $hash = $this->admin->password;
+        foreach (['/fix-hash', '/debug-session', '/fix-db'] as $url) {
+            $this->get($url)->assertNotFound();
+        }
+        $this->assertSame($hash, $this->admin->fresh()->password, 'admin password must not be reset by any public URL');
+    }
+
     public function test_admin_pages_never_expose_password_hash(): void
     {
         $html = $this->actingAs($this->admin)->get('/admin/services')->assertOk()->getContent();
