@@ -28,12 +28,12 @@ export default function Form({ service }) {
         <AuthenticatedLayout
             header={
                 <div className="flex justify-between items-center">
-                    <h2 className="text-xl font-bold leading-tight text-slate-100 uppercase tracking-wider">
+                    <h2 className="font-display text-xl font-extrabold leading-tight text-navy uppercase tracking-wider">
                         {isEditing ? 'Edit Service' : 'Add New Service'}
                     </h2>
                     <Link
                         href={route('admin.services.index')}
-                        className="text-slate-400 hover:text-white transition-colors"
+                        className="inline-flex items-center rounded-full bg-sky-100 border border-sky-300 text-navy hover:border-sky-400 px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors"
                     >
                         &larr; Back to Services
                     </Link>
@@ -44,15 +44,15 @@ export default function Form({ service }) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-4xl sm:px-6 lg:px-8">
-                    <div className="bg-slate-800 shadow-xl sm:rounded-lg overflow-hidden border border-slate-700">
+                    <div className="cube-card-static shadow-glass rounded-3xl overflow-hidden">
                         <form onSubmit={submit} className="p-6 space-y-6">
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <InputLabel htmlFor="title" value="Service Title *" className="text-slate-300" />
+                                    <InputLabel htmlFor="title" value="Service Title *" className="text-ink-soft" />
                                     <TextInput
                                         id="title"
-                                        className="mt-1 block w-full bg-slate-900 border-slate-700 text-white focus:border-indigo-500 focus:ring-indigo-500"
+                                        className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15"
                                         value={data.title}
                                         onChange={(e) => setData('title', e.target.value)}
                                         required
@@ -61,10 +61,10 @@ export default function Form({ service }) {
                                 </div>
 
                                 <div>
-                                    <InputLabel htmlFor="starting_price" value="Starting Price (e.g. ₹3,999)" className="text-slate-300" />
+                                    <InputLabel htmlFor="starting_price" value="Starting Price (e.g. ₹3,999)" className="text-ink-soft" />
                                     <TextInput
                                         id="starting_price"
-                                        className="mt-1 block w-full bg-slate-900 border-slate-700 text-white focus:border-indigo-500 focus:ring-indigo-500"
+                                        className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15"
                                         value={data.starting_price}
                                         onChange={(e) => setData('starting_price', e.target.value)}
                                     />
@@ -73,10 +73,10 @@ export default function Form({ service }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="features" value="Features (one per line)" className="text-slate-300" />
+                                <InputLabel htmlFor="features" value="Features (one per line)" className="text-ink-soft" />
                                 <textarea
                                     id="features"
-                                    className="mt-1 block w-full rounded-md bg-slate-900 border-slate-700 text-white focus:border-indigo-500 focus:ring-indigo-500 shadow-sm font-mono text-sm"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15 shadow-sm font-mono text-sm"
                                     rows="6"
                                     placeholder="Business Websites&#10;Corporate Websites&#10;Portfolio Websites"
                                     value={data.features}
@@ -86,10 +86,10 @@ export default function Form({ service }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="icon_svg" value="Icon SVG Code (raw html)" className="text-slate-300" />
+                                <InputLabel htmlFor="icon_svg" value="Icon SVG Code (raw html)" className="text-ink-soft" />
                                 <textarea
                                     id="icon_svg"
-                                    className="mt-1 block w-full rounded-md bg-slate-900 border-slate-700 text-white focus:border-indigo-500 focus:ring-indigo-500 shadow-sm font-mono text-xs"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15 shadow-sm font-mono text-xs"
                                     rows="4"
                                     placeholder="<svg>...</svg>"
                                     value={data.icon_svg}
@@ -98,8 +98,8 @@ export default function Form({ service }) {
                                 <InputError className="mt-2" message={errors.icon_svg} />
                                 {data.icon_svg && (
                                     <div className="mt-2 flex items-center gap-2">
-                                        <span className="text-xs text-slate-400">Preview:</span>
-                                        <div className="w-8 h-8 text-indigo-400" dangerouslySetInnerHTML={{ __html: data.icon_svg }}></div>
+                                        <span className="text-xs text-ink-muted">Preview:</span>
+                                        <div className="w-8 h-8 text-amber" dangerouslySetInnerHTML={{ __html: data.icon_svg }}></div>
                                     </div>
                                 )}
                             </div>
@@ -108,7 +108,7 @@ export default function Form({ service }) {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="ml-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-6 rounded uppercase tracking-widest transition-colors disabled:opacity-50"
+                                    className="ml-4 inline-flex items-center rounded-full bg-navy text-white hover:bg-navy-hover shadow-cube px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors disabled:opacity-50"
                                 >
                                     {processing ? 'Saving...' : 'Save Service'}
                                 </button>

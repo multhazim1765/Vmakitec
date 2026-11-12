@@ -44,12 +44,12 @@ export default function Form({ project }) {
         <AuthenticatedLayout
             header={
                 <div className="flex justify-between items-center">
-                    <h2 className="text-xl font-bold leading-tight text-slate-100 uppercase tracking-wider">
+                    <h2 className="font-display text-xl font-extrabold leading-tight text-navy uppercase tracking-wider">
                         {isEditing ? 'Edit Project' : 'Add New Project'}
                     </h2>
                     <Link
                         href={route('admin.projects.index')}
-                        className="text-slate-400 hover:text-white transition-colors"
+                        className="inline-flex items-center rounded-full bg-sky-100 border border-sky-300 text-navy hover:border-sky-400 px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors"
                     >
                         &larr; Back to Portfolio
                     </Link>
@@ -60,15 +60,15 @@ export default function Form({ project }) {
 
             <div className="py-12">
                 <div className="mx-auto max-w-4xl sm:px-6 lg:px-8">
-                    <div className="bg-slate-800 shadow-xl sm:rounded-lg overflow-hidden border border-slate-700">
+                    <div className="cube-card-static shadow-glass rounded-3xl overflow-hidden">
                         <form onSubmit={submit} className="p-6 space-y-6">
                             
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <InputLabel htmlFor="client_name" value="Client Name *" className="text-slate-300" />
+                                    <InputLabel htmlFor="client_name" value="Client Name *" className="text-ink-soft" />
                                     <TextInput
                                         id="client_name"
-                                        className="mt-1 block w-full bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500"
+                                        className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15"
                                         value={data.client_name}
                                         onChange={(e) => setData('client_name', e.target.value)}
                                         required
@@ -77,10 +77,10 @@ export default function Form({ project }) {
                                 </div>
 
                                 <div>
-                                    <InputLabel htmlFor="industry" value="Industry" className="text-slate-300" />
+                                    <InputLabel htmlFor="industry" value="Industry" className="text-ink-soft" />
                                     <TextInput
                                         id="industry"
-                                        className="mt-1 block w-full bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500"
+                                        className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15"
                                         value={data.industry}
                                         onChange={(e) => setData('industry', e.target.value)}
                                     />
@@ -89,10 +89,10 @@ export default function Form({ project }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="challenge" value="Challenge" className="text-slate-300" />
+                                <InputLabel htmlFor="challenge" value="Challenge" className="text-ink-soft" />
                                 <textarea
                                     id="challenge"
-                                    className="mt-1 block w-full rounded-md bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500 shadow-sm"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15 shadow-sm"
                                     rows="3"
                                     value={data.challenge}
                                     onChange={(e) => setData('challenge', e.target.value)}
@@ -101,10 +101,10 @@ export default function Form({ project }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="solution" value="Solution" className="text-slate-300" />
+                                <InputLabel htmlFor="solution" value="Solution" className="text-ink-soft" />
                                 <textarea
                                     id="solution"
-                                    className="mt-1 block w-full rounded-md bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500 shadow-sm"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15 shadow-sm"
                                     rows="3"
                                     value={data.solution}
                                     onChange={(e) => setData('solution', e.target.value)}
@@ -113,10 +113,10 @@ export default function Form({ project }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="outcome" value="Outcome" className="text-slate-300" />
+                                <InputLabel htmlFor="outcome" value="Outcome" className="text-ink-soft" />
                                 <textarea
                                     id="outcome"
-                                    className="mt-1 block w-full rounded-md bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500 shadow-sm"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15 shadow-sm"
                                     rows="3"
                                     value={data.outcome}
                                     onChange={(e) => setData('outcome', e.target.value)}
@@ -125,10 +125,10 @@ export default function Form({ project }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="tech_stack" value="Tech Stack (comma separated)" className="text-slate-300" />
+                                <InputLabel htmlFor="tech_stack" value="Tech Stack (comma separated)" className="text-ink-soft" />
                                 <TextInput
                                     id="tech_stack"
-                                    className="mt-1 block w-full bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15"
                                     value={data.tech_stack}
                                     placeholder="e.g. React, Laravel, TailwindCSS"
                                     onChange={(e) => setData('tech_stack', e.target.value)}
@@ -137,11 +137,11 @@ export default function Form({ project }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="link" value="Project URL/Link" className="text-slate-300" />
+                                <InputLabel htmlFor="link" value="Project URL/Link" className="text-ink-soft" />
                                 <TextInput
                                     id="link"
                                     type="url"
-                                    className="mt-1 block w-full bg-slate-900 border-slate-700 text-white focus:border-blue-500 focus:ring-blue-500"
+                                    className="mt-1 block w-full bg-white border-sky-300 rounded-xl text-ink placeholder:text-ink-muted/60 focus:border-sky-500 focus:ring-4 focus:ring-sky-500/15"
                                     value={data.link}
                                     onChange={(e) => setData('link', e.target.value)}
                                 />
@@ -149,11 +149,11 @@ export default function Form({ project }) {
                             </div>
 
                             <div>
-                                <InputLabel htmlFor="image" value={isEditing ? "Update Image (optional)" : "Project Image"} className="text-slate-300" />
+                                <InputLabel htmlFor="image" value={isEditing ? "Update Image (optional)" : "Project Image"} className="text-ink-soft" />
                                 <input
                                     id="image"
                                     type="file"
-                                    className="mt-1 block w-full text-slate-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-900 file:text-blue-200 hover:file:bg-blue-800"
+                                    className="mt-1 block w-full text-sm text-ink-soft file:mr-4 file:py-2 file:px-4 file:rounded-full file:border file:border-solid file:border-sky-300 file:text-xs file:font-semibold file:uppercase file:tracking-wider file:bg-sky-100 file:text-navy hover:file:border-sky-400 hover:file:bg-sky-50 file:transition-colors"
                                     onChange={(e) => {
                                         const file = e.target.files[0];
                                         setData('image', file);
@@ -168,14 +168,14 @@ export default function Form({ project }) {
                                 <InputError className="mt-2" message={errors.image} />
                                 {imagePreview && (
                                     <div className="mt-2">
-                                        <p className="text-sm text-slate-400 mb-2">Selected Image Preview:</p>
-                                        <img src={imagePreview} alt="Preview" className="h-32 object-contain rounded border border-slate-700" />
+                                        <p className="text-sm text-ink-muted mb-2">Selected Image Preview:</p>
+                                        <img src={imagePreview} alt="Preview" className="h-32 object-contain rounded-xl border border-sky-300 bg-white p-1" />
                                     </div>
                                 )}
                                 {!imagePreview && isEditing && project.image_path && (
                                     <div className="mt-2">
-                                        <p className="text-sm text-slate-400 mb-2">Current Image:</p>
-                                        <img src={project.image_path} alt="Current" className="h-32 object-contain rounded border border-slate-700" />
+                                        <p className="text-sm text-ink-muted mb-2">Current Image:</p>
+                                        <img src={project.image_path} alt="Current" className="h-32 object-contain rounded-xl border border-sky-300 bg-white p-1" />
                                     </div>
                                 )}
                             </div>
@@ -184,7 +184,7 @@ export default function Form({ project }) {
                                 <button
                                     type="submit"
                                     disabled={processing}
-                                    className="ml-4 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded uppercase tracking-widest transition-colors disabled:opacity-50"
+                                    className="ml-4 inline-flex items-center rounded-full bg-navy text-white hover:bg-navy-hover shadow-cube px-6 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors disabled:opacity-50"
                                 >
                                     {processing ? 'Saving...' : 'Save Project'}
                                 </button>

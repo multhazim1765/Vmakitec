@@ -10,15 +10,15 @@ export default function AuthenticatedLayout({ header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-300 font-sans selection:bg-blue-500/30">
-            <nav className="border-b border-slate-800 bg-slate-950 sticky top-0 z-50">
+        <div className="min-h-screen bg-canvas text-ink font-sans selection:bg-sky-300/50 selection:text-navy">
+            <nav className="sticky top-0 z-50 border-b border-sky-300 bg-white/80 shadow-glass backdrop-blur-xl backdrop-saturate-150">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 justify-between">
                         <div className="flex">
                             <div className="flex shrink-0 items-center">
                                 <Link href="/" className="flex items-center gap-2">
-                                    <img src="/vmakitec-logo.jpg" alt="VMAKITEC Logo" className="w-8 h-8 rounded object-cover" />
-                                    <span className="font-bold text-white tracking-widest text-lg">VMAKITEC</span>
+                                    <img src="/vmakitec-logo.jpg" alt="VMAKITEC Logo" className="w-8 h-8 rounded-lg object-cover ring-1 ring-sky-300" />
+                                    <span className="font-display font-extrabold text-navy tracking-widest text-lg">VMAKITEC</span>
                                 </Link>
                             </div>
 
@@ -26,35 +26,35 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
-                                    className={route().current('dashboard') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                    className={route().current('dashboard') ? "text-navy border-navy" : "text-ink-soft hover:text-navy border-transparent hover:border-sky-300"}
                                 >
                                     Dashboard
                                 </NavLink>
                                 <NavLink
                                     href={route('admin.projects.index')}
                                     active={route().current('admin.projects.*')}
-                                    className={route().current('admin.projects.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                    className={route().current('admin.projects.*') ? "text-navy border-navy" : "text-ink-soft hover:text-navy border-transparent hover:border-sky-300"}
                                 >
                                     Projects
                                 </NavLink>
                                 <NavLink
                                     href={route('admin.services.index')}
                                     active={route().current('admin.services.*')}
-                                    className={route().current('admin.services.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                    className={route().current('admin.services.*') ? "text-navy border-navy" : "text-ink-soft hover:text-navy border-transparent hover:border-sky-300"}
                                 >
                                     Services
                                 </NavLink>
                                 <NavLink
                                     href={route('admin.leads.index')}
                                     active={route().current('admin.leads.*')}
-                                    className={route().current('admin.leads.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                    className={route().current('admin.leads.*') ? "text-navy border-navy" : "text-ink-soft hover:text-navy border-transparent hover:border-sky-300"}
                                 >
                                     Leads
                                 </NavLink>
                                 <NavLink
                                     href={route('admin.testimonials.index')}
                                     active={route().current('admin.testimonials.*')}
-                                    className={route().current('admin.testimonials.*') ? "text-blue-400 border-blue-500" : "text-slate-400 hover:text-slate-200 border-transparent hover:border-slate-700"}
+                                    className={route().current('admin.testimonials.*') ? "text-navy border-navy" : "text-ink-soft hover:text-navy border-transparent hover:border-sky-300"}
                                 >
                                     Testimonials
                                 </NavLink>
@@ -68,7 +68,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-slate-700 bg-slate-800 px-3 py-2 text-sm font-medium leading-4 text-slate-300 transition duration-150 ease-in-out hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                className="inline-flex items-center rounded-full border border-sky-300 bg-sky-50 px-4 py-2 text-sm font-semibold leading-4 text-navy transition duration-300 ease-cube hover:border-sky-400 hover:bg-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
                                             >
                                                 {user.name}
 
@@ -88,10 +88,10 @@ export default function AuthenticatedLayout({ header, children }) {
                                         </span>
                                     </Dropdown.Trigger>
 
-                                    <Dropdown.Content contentClasses="py-1 bg-slate-800 border border-slate-700 shadow-xl">
+                                    <Dropdown.Content contentClasses="py-1 glass-panel-elevated">
                                         <Dropdown.Link
                                             href={route('profile.edit')}
-                                            className="text-slate-300 hover:bg-slate-700 hover:text-white focus:bg-slate-700"
+                                            className="text-ink-soft hover:bg-sky-50 hover:text-navy focus:bg-sky-50"
                                         >
                                             Profile
                                         </Dropdown.Link>
@@ -99,7 +99,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                             href={route('logout')}
                                             method="post"
                                             as="button"
-                                            className="text-slate-300 hover:bg-slate-700 hover:text-white focus:bg-slate-700"
+                                            className="text-ink-soft hover:bg-sky-50 hover:text-navy focus:bg-sky-50"
                                         >
                                             Log Out
                                         </Dropdown.Link>
@@ -111,7 +111,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         <div className="-me-2 flex items-center sm:hidden">
                             <button
                                 onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
-                                className="inline-flex items-center justify-center rounded-md p-2 text-slate-400 transition duration-150 ease-in-out hover:bg-slate-800 hover:text-white focus:bg-slate-800 focus:text-white focus:outline-none"
+                                className="inline-flex items-center justify-center rounded-full p-2 text-ink-soft transition duration-300 ease-cube hover:bg-sky-100 hover:text-navy focus:bg-sky-100 focus:text-navy focus:outline-none"
                             >
                                 <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path
@@ -128,49 +128,49 @@ export default function AuthenticatedLayout({ header, children }) {
                     </div>
                 </div>
 
-                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden bg-slate-900 border-b border-slate-800'}>
+                <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden bg-white/95 border-b border-sky-300'}>
                     <div className="space-y-1 pb-3 pt-2">
                         <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}
-                            className={route().current('dashboard') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                            className={route().current('dashboard') ? "bg-sky-100 border-navy text-navy" : "text-ink-soft hover:bg-sky-50 border-transparent hover:border-sky-300"}
                         >
                             Dashboard
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('admin.projects.index')} active={route().current('admin.projects.*')}
-                            className={route().current('admin.projects.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                            className={route().current('admin.projects.*') ? "bg-sky-100 border-navy text-navy" : "text-ink-soft hover:bg-sky-50 border-transparent hover:border-sky-300"}
                         >
                             Projects
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('admin.services.index')} active={route().current('admin.services.*')}
-                            className={route().current('admin.services.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                            className={route().current('admin.services.*') ? "bg-sky-100 border-navy text-navy" : "text-ink-soft hover:bg-sky-50 border-transparent hover:border-sky-300"}
                         >
                             Services
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('admin.leads.index')} active={route().current('admin.leads.*')}
-                            className={route().current('admin.leads.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                            className={route().current('admin.leads.*') ? "bg-sky-100 border-navy text-navy" : "text-ink-soft hover:bg-sky-50 border-transparent hover:border-sky-300"}
                         >
                             Leads
                         </ResponsiveNavLink>
                         <ResponsiveNavLink href={route('admin.testimonials.index')} active={route().current('admin.testimonials.*')}
-                            className={route().current('admin.testimonials.*') ? "bg-slate-800 border-blue-500 text-blue-400" : "text-slate-400 hover:bg-slate-800 border-transparent hover:border-slate-700"}
+                            className={route().current('admin.testimonials.*') ? "bg-sky-100 border-navy text-navy" : "text-ink-soft hover:bg-sky-50 border-transparent hover:border-sky-300"}
                         >
                             Testimonials
                         </ResponsiveNavLink>
                     </div>
-                    <div className="border-t border-slate-800 pb-1 pt-4">
+                    <div className="border-t border-line pb-1 pt-4">
                         <div className="px-4">
-                            <div className="text-base font-medium text-white">{user.name}</div>
-                            <div className="text-sm font-medium text-slate-400">{user.email}</div>
+                            <div className="text-base font-semibold text-navy">{user.name}</div>
+                            <div className="text-sm font-medium text-ink-muted">{user.email}</div>
                         </div>
                         <div className="mt-3 space-y-1">
-                            <ResponsiveNavLink href={route('profile.edit')} className="text-slate-400 hover:bg-slate-800 hover:text-white">Profile</ResponsiveNavLink>
-                            <ResponsiveNavLink method="post" href={route('logout')} as="button" className="text-slate-400 hover:bg-slate-800 hover:text-white">Log Out</ResponsiveNavLink>
+                            <ResponsiveNavLink href={route('profile.edit')} className="text-ink-soft hover:bg-sky-50 hover:text-navy">Profile</ResponsiveNavLink>
+                            <ResponsiveNavLink method="post" href={route('logout')} as="button" className="text-ink-soft hover:bg-sky-50 hover:text-navy">Log Out</ResponsiveNavLink>
                         </div>
                     </div>
                 </div>
             </nav>
 
             {header && (
-                <header className="bg-slate-900 border-b border-slate-800/50 shadow-sm">
+                <header className="bg-white/60 border-b border-sky-300/60 backdrop-blur-sm">
                     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                         {header}
                     </div>

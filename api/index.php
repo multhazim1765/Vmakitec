@@ -28,19 +28,26 @@ $protocol = (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWA
 $host = $_SERVER['HTTP_HOST'] ?? 'www.vmakitec.tech';
 $appUrl = $protocol . '://' . $host;
 
-// Determine Database Connection Resilience
-$dbHost = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?? '';
-$dbConnection = 'mysql';
+// Choose the database.
+// With a hosted MySQL configured (DB_HOST env var in Vercel), ALWAYS use it.
+// We deliberately do not fall back to SQLite when MySQL is unreachable: on
+// Vercel the SQLite copy lives in /tmp and is wiped on every cold start, so a
+// silent fallback makes admin edits "reset". A loud error is better.
+// Without DB_HOST (e.g. preview deploys) the read-only bundled SQLite is used,
+// and admin edits there are NOT permanent.
+$dbHost = $_ENV['DB_HOST'] ?? (getenv('DB_HOST') ?: '');
+$dbConnection = (!empty($dbHost) && $dbHost !== '127.0.0.1' && $dbHost !== 'localhost') ? 'mysql' : 'sqlite';
 
-// Check if MySQL host is valid and resolves via DNS
-if (!empty($dbHost) && $dbHost !== '127.0.0.1' && $dbHost !== 'localhost') {
-    $ip = @gethostbyname($dbHost);
-    if ($ip === $dbHost) {
-        // DNS lookup failed (host down or DNS missing) -> Fallback to SQLite
-        $dbConnection = 'sqlite';
+// Hosted MySQL providers require TLS. If no CA file was configured, use the
+// first system CA bundle that exists in the serverless runtime.
+if ($dbConnection === 'mysql' && !($_ENV['MYSQL_ATTR_SSL_CA'] ?? getenv('MYSQL_ATTR_SSL_CA'))) {
+    foreach (['/etc/pki/tls/certs/ca-bundle.crt', '/etc/ssl/certs/ca-certificates.crt', '/etc/ssl/cert.pem', '/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem'] as $caFile) {
+        if (@is_file($caFile)) {
+            putenv('MYSQL_ATTR_SSL_CA=' . $caFile);
+            $_ENV['MYSQL_ATTR_SSL_CA'] = $caFile;
+            break;
+        }
     }
-} elseif (empty($dbHost) || $dbHost === '127.0.0.1' || $dbHost === 'localhost') {
-    $dbConnection = 'sqlite';
 }
 
 $bundledDb = __DIR__ . '/../database/database.sqlite';
