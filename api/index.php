@@ -39,9 +39,10 @@ $dbHost = $_ENV['DB_HOST'] ?? (getenv('DB_HOST') ?: '');
 $dbConnection = (!empty($dbHost) && $dbHost !== '127.0.0.1' && $dbHost !== 'localhost') ? 'mysql' : 'sqlite';
 
 // Hosted MySQL providers require TLS. If no CA file was configured, use the
-// first system CA bundle that exists in the serverless runtime.
+// bundled provider CA (Aiven signs with a private per-project CA that is not
+// in system bundles), otherwise the first system CA bundle that exists.
 if ($dbConnection === 'mysql' && !($_ENV['MYSQL_ATTR_SSL_CA'] ?? getenv('MYSQL_ATTR_SSL_CA'))) {
-    foreach (['/etc/pki/tls/certs/ca-bundle.crt', '/etc/ssl/certs/ca-certificates.crt', '/etc/ssl/cert.pem', '/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem'] as $caFile) {
+    foreach ([__DIR__ . '/../database/certs/mysql-ca.pem', '/etc/pki/tls/certs/ca-bundle.crt', '/etc/ssl/certs/ca-certificates.crt', '/etc/ssl/cert.pem', '/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem'] as $caFile) {
         if (@is_file($caFile)) {
             putenv('MYSQL_ATTR_SSL_CA=' . $caFile);
             $_ENV['MYSQL_ATTR_SSL_CA'] = $caFile;
@@ -78,7 +79,8 @@ putenv('APP_NAME=Vmakitec');
 putenv('SESSION_COOKIE=vmakitec_session');
 putenv('SESSION_LIFETIME=120');
 putenv('SESSION_EXPIRE_ON_CLOSE=false');
-putenv('HASH_DRIVER=argon2id');
+// HASH_DRIVER is no longer forced to argon2id: the admin password hash in the
+// database is bcrypt (Laravel's default), and argon2id cannot verify it.
 putenv('DB_CONNECTION=' . $dbConnection);
 if ($dbConnection === 'sqlite') {
     putenv('DB_DATABASE=' . $sqliteDbPath);
