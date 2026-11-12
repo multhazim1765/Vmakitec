@@ -81,6 +81,16 @@ putenv('SESSION_LIFETIME=120');
 putenv('SESSION_EXPIRE_ON_CLOSE=false');
 // HASH_DRIVER is no longer forced to argon2id: the admin password hash in the
 // database is bcrypt (Laravel's default), and argon2id cannot verify it.
+// BCRYPT_ROUNDS must be an integer 4-31. The value configured in Vercel was
+// invalid, which made every login crash with "Bcrypt hashing not supported."
+// (Laravel re-hashes on login and password_hash() rejects the bad cost).
+// Use 12 (matches the stored hash) whenever the configured value is invalid.
+$bcryptRounds = $_SERVER['BCRYPT_ROUNDS'] ?? $_ENV['BCRYPT_ROUNDS'] ?? getenv('BCRYPT_ROUNDS');
+if (!is_numeric($bcryptRounds) || (int) $bcryptRounds < 4 || (int) $bcryptRounds > 31) {
+    putenv('BCRYPT_ROUNDS=12');
+    $_ENV['BCRYPT_ROUNDS'] = '12';
+    $_SERVER['BCRYPT_ROUNDS'] = '12';
+}
 putenv('DB_CONNECTION=' . $dbConnection);
 if ($dbConnection === 'sqlite') {
     putenv('DB_DATABASE=' . $sqliteDbPath);
